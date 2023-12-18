@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 public class Holder {
     private static boolean proof = false;
     protected void proofInWork(boolean dispenserPay){
-        this.proof = dispenserPay;
+        Holder.proof = dispenserPay;
     }
     public int work(int count){
         if (proof) {
