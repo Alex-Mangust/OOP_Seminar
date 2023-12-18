@@ -5,7 +5,7 @@ import java.util.List;
 
 import domen.Product;
 
-public class CoinDispenser {
+public class CoinDispenser extends Holder {
     private HashMap<Integer, Integer> priceProducts = new HashMap<>();
     
     public CoinDispenser(List<Product> products) {
@@ -15,16 +15,16 @@ public class CoinDispenser {
         }
     }
 
-    public boolean pay(int coins, int numberProduct) {
+    public void pay(int coins, int numberProduct) {
         if (priceProducts.get(numberProduct) == coins) {
             System.out.println("Оплата прошла успешно! Ожидается выдача.");
-            return true;
+            proofInWork(true);
         } else if (priceProducts.get(numberProduct) <= coins) {
             System.out.println(String.format("Оплата прошла успешно! Ожидается выдача.\nВаша сдача %d рублей.", coins - priceProducts.get(numberProduct)));
-            return true;
+            proofInWork(true);
         } else {
             System.out.println("У вас недостаточно средств!");
-            return false;
+            proofInWork(false);
         }
         
     }

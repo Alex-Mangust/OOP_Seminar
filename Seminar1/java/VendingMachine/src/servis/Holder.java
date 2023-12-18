@@ -3,8 +3,8 @@ package servis;
 import java.util.concurrent.TimeUnit;
 
 public class Holder {
-    private boolean proof = false;
-    public void proofInWork(boolean dispenserPay){
+    private static boolean proof = false;
+    protected void proofInWork(boolean dispenserPay){
         this.proof = dispenserPay;
     }
     public int work(int count){

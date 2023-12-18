@@ -28,27 +28,24 @@ public class App {
 
     public static void showAssortiment(VendingMachine machine) {
         for (Product prod : machine.getProduct()) {
-            // System.out.println(VendingMachine.getNumberProducts(prod) + ". " + prod);
             System.out.printf("%d. %s\n",VendingMachine.getNumberProducts(prod), prod);
             
         }
     }
 
-    public static boolean choiceProduct(VendingMachine machine, int choice, CoinDispenser dispenser) {
+    public static void choiceProduct(VendingMachine machine, int choice, CoinDispenser dispenser, Scanner pay) {
         for (Product product : machine.getProduct()) {
             if (VendingMachine.getNumberProducts(product) == choice) {
                 System.out.printf("Вы вабрали продукт = %s\nЦена продукта = %d рублей\n", product.getName(), product.getPrice());
-                Scanner pay = new Scanner(System.in);
                 System.out.print("Внести деньги: ");
                 String yourPay = pay.nextLine();
                 if (isNumbers(yourPay)) {
-                    return dispenser.pay(Integer.parseInt(yourPay), choice);
+                    dispenser.pay(Integer.parseInt(yourPay), choice);
+                } else {
+                    System.out.println("Ошибка! Неккоректный ввод!");
                 }
-                System.out.println("Ошибка! Неккоректный ввод!");
-                return false;
             }
         }
-        return false;
     }
 
     public static void main(String[] args) throws Exception {
@@ -92,10 +89,9 @@ public class App {
         String choiceProduct = yourChoice.nextLine();
         boolean error = !(isNumbers(choiceProduct) && Integer.parseInt(choiceProduct) > 0
                 && Integer.parseInt(choiceProduct) <= products.size());
-        boolean proofOfPay = false;
         if (!error) {
             clearConsole();
-            proofOfPay = choiceProduct(machine, Integer.parseInt(choiceProduct), dispenser);
+            choiceProduct(machine, Integer.parseInt(choiceProduct), dispenser, yourChoice);
 
         } else {
             clearConsole();
@@ -127,15 +123,12 @@ public class App {
                     showAssortimentOpen = false;
                     if (!error) {
                         clearConsole();
-                        proofOfPay = choiceProduct(machine, Integer.parseInt(choiceProduct), dispenser);
+                        choiceProduct(machine, Integer.parseInt(choiceProduct), dispenser, yourChoice);
                     }
                 }
             }
         }
-        if(proofOfPay) {
-            holder.proofInWork(proofOfPay);
-            holder.work();
-        }
+        holder.work();
         yourChoice.close();
     }
 }
