@@ -15,7 +15,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         try {
-            File file = new File("OOP_Seminar\\Seminar2\\Supermarket\\src\\log.txt");
+            File file = new File("C:\\Users\\Саня\\Desktop\\Учеба\\Программирование. Специализация\\Объектно-ориентированное программирование. Семинары\\OOP_Seminar\\Seminar2\\Supermarket\\src\\log.txt");
              
             FileOutputStream fos = new FileOutputStream(file);
             
