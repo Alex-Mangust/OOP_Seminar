@@ -27,7 +27,6 @@ public class HotDrink extends Product {
     
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
         return super.toString() + String.format(" Температура = %d градусов", this.temperature);
     }
 }

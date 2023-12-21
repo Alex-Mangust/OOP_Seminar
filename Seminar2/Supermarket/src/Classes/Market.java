@@ -10,6 +10,11 @@ import Interfaces.iQueueBehaviour;
 public class Market implements iMarcketBehaviour,iQueueBehaviour {
 
     private List<iActorBehaviour> queue;
+    private static int countParticipantInAction;
+    
+    static {
+        countParticipantInAction = 0;
+    }
 
     public Market() {
         this.queue = new ArrayList<iActorBehaviour>();
@@ -17,20 +22,20 @@ public class Market implements iMarcketBehaviour,iQueueBehaviour {
 
     @Override
     public void acceptToMarket(iActorBehaviour actor) {
-        System.out.println(actor.getActor().getName() + " клиент пришел в магазин ");
+        System.out.println(String.format("Клиент %s пришел в магазин", actor.getActor().getName()));
         takeInQueue(actor);
     }
 
     @Override
     public void takeInQueue(iActorBehaviour actor) {
         this.queue.add(actor);
-        System.out.println(actor.getActor().getName() + " клиент добавлен в очередь ");
+        System.out.println(String.format("Клиент %s добавлен в очередь\n", actor.getActor().getName()));
     }
 
     @Override
     public void releseFromMarket(List<iActorBehaviour> actors) {
         for (iActorBehaviour actor : actors) {
-            System.out.println(actor.getActor().getName() + " клиент ушел из магазина ");
+            System.out.println(String.format("Клиент %s ушел из магазина", actor.getActor().getName()));
             queue.remove(actor);
         }
 
@@ -39,7 +44,9 @@ public class Market implements iMarcketBehaviour,iQueueBehaviour {
     @Override
     public void update() {
         takeOrder();
+        System.out.println();
         giveOrder();
+        System.out.println();
         releaseFromQueue();
     }
 
@@ -47,8 +54,19 @@ public class Market implements iMarcketBehaviour,iQueueBehaviour {
     public void giveOrder() {
         for (iActorBehaviour actor : queue) {
             if (actor.isMakeOrder()) {
-                actor.setTakeOrder(true);
-                System.out.println(actor.getActor().getName() + " клиент получил свой заказ ");
+                if (!(actor instanceof PromotionalClient)) {
+                    actor.setTakeOrder(true);
+                    System.out.println(String.format("Клиент %s получил свой заказ", actor.getActor().getName()));
+                } else {
+                    if (countParticipantInAction != Action.getMaxCountParticipant()) {
+                        actor.setTakeOrder(true);
+                        countParticipantInAction++;
+                        System.out.println(String.format("Клиент %s получил свой заказ", actor.getActor().getName()));
+                    }  else {
+                        System.out.println(String.format("Клиенту %s отказано в получении заказа! Превышено максимальное колличество участников в акции.", actor.getActor().getName()));
+                    }
+
+                }
             }
         }
 
@@ -60,7 +78,7 @@ public class Market implements iMarcketBehaviour,iQueueBehaviour {
         for (iActorBehaviour actor : queue) {
             if (actor.isTakeOrder()) {
                 releaseActors.add(actor);
-                System.out.println(actor.getActor().getName() + " клиент ушел из очереди ");
+                System.out.println(String.format("Клиент %s ушел из очереди", actor.getActor().getName()));
             }
         }
         releseFromMarket(releaseActors);
@@ -71,7 +89,7 @@ public class Market implements iMarcketBehaviour,iQueueBehaviour {
         for (iActorBehaviour actor : queue) {
             if (!actor.isMakeOrder()) {
                 actor.setMakeOrder(true);
-                System.out.println(actor.getActor().getName() + " клиент сделал заказ ");
+                System.out.println(String.format("Клиент %s сделал заказ", actor.getActor().getName()));
 
             }
         }

@@ -1,27 +1,44 @@
 package Classes;
 
+public class PromotionalClient extends Actor {
+    private static int countParticipant;
 
-public class OrdinaryClient extends Actor {
-
-    public OrdinaryClient(String name) {
-        super(name);
+    private String nameAction;
+    private int clientId;
+    
+    static {
+        countParticipant = 0;
     }
 
+
+    public PromotionalClient(String name, Action nameAction, int clientId) {
+        super(name);
+        this.nameAction = nameAction.getNameAction();
+        this.clientId = clientId;
+        countParticipant++;
+    }
+
+    @Override
     public boolean isTakeOrder() {
         return super.isTakeOrder;
     }
 
+    @Override
     public boolean isMakeOrder() {
         return super.isMakeOrder;
     }
 
+    @Override
     public void setTakeOrder(boolean value) {
         super.isTakeOrder = value;
     }
+    
+    @Override
     public void setMakeOrder(boolean value) {
         super.isMakeOrder = value;
     }
 
+    @Override
     public Actor getActor() {
         return this;
     }
@@ -30,10 +47,23 @@ public class OrdinaryClient extends Actor {
     public String getName() {
         return super.name;
     }
-
+    
     @Override
     public void setName(String name) {
         super.name = name;
+    }
+    
+
+    public String getNameAction() {
+        return nameAction;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public static int getCountParticipant() {
+        return countParticipant;
     }
 
     @Override
@@ -55,4 +85,6 @@ public class OrdinaryClient extends Actor {
         }
     }
 
+    
+    
 }

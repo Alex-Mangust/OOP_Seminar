@@ -1,5 +1,6 @@
 package Classes;
 
+
 public class VipClient extends Actor {
     
     private int vipId;
@@ -27,6 +28,10 @@ public class VipClient extends Actor {
     public Actor getActor() {
         return this;
     }
+    
+    public int getVipId() {
+        return vipId;
+    }
 
     @Override
     public String getName() {
@@ -38,4 +43,22 @@ public class VipClient extends Actor {
         super.name = name;
     }
     
+    @Override
+    public boolean checkinOfOrden() {
+        return super.isTakeOrder;
+    }
+
+    @Override
+    public boolean receptionOrder() {
+        return checkinOfOrden();
+    }
+
+    @Override
+    public String returnOrder() {
+        if (receptionOrder()) {
+            return String.format("Клиент %s вернул заказ и получил деньги.", super.name);
+        } else {
+            return String.format("У клиента %s не получилось вернуть заказ. Заказ не соотвествует требованиям!", super.name);
+        }
+    }
 }
