@@ -11,13 +11,18 @@ import Classes.VipClient;
 import Interfaces.iActorBehaviour;
 
 public class App {
+    public static void clearConsole() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
     public static void main(String[] args) throws Exception {
         PrintStream originalOut = System.out;
         PrintStream ps = null;
         FileOutputStream fos = null;
         try {
             File file = new File(
-                    "C:\\Users\\Саня\\Desktop\\Учеба\\Программирование. Специализация\\Объектно-ориентированное программирование. Семинары\\OOP_Seminar\\Seminar2\\Supermarket\\src\\log.txt");
+                    "OOP_Seminar\\Seminar2\\Supermarket\\src\\log.txt");
 
             fos = new FileOutputStream(file);
 
@@ -70,12 +75,12 @@ public class App {
         }
 
         System.setOut(originalOut);
+        clearConsole();
         try (FileReader reader = new FileReader(
-                "C:\\Users\\Саня\\Desktop\\Учеба\\Программирование. Специализация\\Объектно-ориентированное программирование. Семинары\\OOP_Seminar\\Seminar2\\Supermarket\\src\\log.txt")) {
+                "OOP_Seminar\\Seminar2\\Supermarket\\src\\log.txt")) {
             int charInFile;
             while ((charInFile = reader.read()) != -1) {
                 System.out.print((char) charInFile);
-
             }
         } catch (Exception error) {
             System.out.println(error.getMessage());
