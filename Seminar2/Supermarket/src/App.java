@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
-import Classes.Action;
 import Classes.Market;
 import Classes.OrdinaryClient;
 import Classes.PromotionalClient;
@@ -25,8 +24,6 @@ public class App {
 
             Market market = new Market();
 
-            Action action = new Action("Акция 1", 4);
-
             iActorBehaviour actor1 = new OrdinaryClient("Саша");
             iActorBehaviour actor2 = new OrdinaryClient("Маша");
             iActorBehaviour actor3 = new VipClient("Миша", 1);
@@ -37,12 +34,12 @@ public class App {
             market.acceptToMarket(actor3);
             market.acceptToMarket(inspector);
 
-            iActorBehaviour actorPromotional = new PromotionalClient("Аня", action, 1);
-            iActorBehaviour actorPromotional1 = new PromotionalClient("Глеб", action, 2);
-            iActorBehaviour actorPromotional2 = new PromotionalClient("Костя", action, 3);
-            iActorBehaviour actorPromotional3 = new PromotionalClient("Катя", action, 4);
-            iActorBehaviour actorPromotional4 = new PromotionalClient("Никита", action, 5);
-            iActorBehaviour actorPromotional5 = new PromotionalClient("Ира", action, 6);
+            iActorBehaviour actorPromotional = new PromotionalClient("Аня", "Акция 1");
+            iActorBehaviour actorPromotional1 = new PromotionalClient("Глеб", "Акция 1");
+            iActorBehaviour actorPromotional2 = new PromotionalClient("Костя", "Акция 1");
+            iActorBehaviour actorPromotional3 = new PromotionalClient("Катя", "Акция 1");
+            iActorBehaviour actorPromotional4 = new PromotionalClient("Никита", "Акция 1");
+            iActorBehaviour actorPromotional5 = new PromotionalClient("Ира", "Акция 1");
 
             market.acceptToMarket(actorPromotional);
             market.acceptToMarket(actorPromotional1);
@@ -55,7 +52,7 @@ public class App {
 
             System.out.println();
             System.out.println(String.format("Количество людей, принимающих участие в акции - %d", PromotionalClient.getCountParticipant()));
-            System.out.println(String.format("Максимальное количество участников в акции - %d", Action.getMaxCountParticipant()));
+            System.out.println(String.format("Максимальное количество участников в акции - %d", Market.getCountMaxParticipantInAction()));
             System.out.println();
             
             try {
