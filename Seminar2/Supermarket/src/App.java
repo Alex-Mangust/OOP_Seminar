@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.PrintStream;
 
 import Classes.Market;
@@ -8,18 +9,20 @@ import Classes.PromotionalClient;
 import Classes.TaxInspector;
 import Classes.VipClient;
 import Interfaces.iActorBehaviour;
-import Interfaces.iReturnOrder;
 
 public class App {
-
     public static void main(String[] args) throws Exception {
+        PrintStream originalOut = System.out;
+        PrintStream ps = null;
+        FileOutputStream fos = null;
         try {
-            File file = new File("C:\\Users\\Саня\\Desktop\\Учеба\\Программирование. Специализация\\Объектно-ориентированное программирование. Семинары\\OOP_Seminar\\Seminar2\\Supermarket\\src\\log.txt");
-             
-            FileOutputStream fos = new FileOutputStream(file);
-            
-            PrintStream ps = new PrintStream(fos);
-        
+            File file = new File(
+                    "C:\\Users\\Саня\\Desktop\\Учеба\\Программирование. Специализация\\Объектно-ориентированное программирование. Семинары\\OOP_Seminar\\Seminar2\\Supermarket\\src\\log.txt");
+
+            fos = new FileOutputStream(file);
+
+            ps = new PrintStream(fos);
+
             System.setOut(ps);
 
             Market market = new Market();
@@ -47,7 +50,7 @@ public class App {
             market.acceptToMarket(actorPromotional3);
             market.acceptToMarket(actorPromotional4);
             market.acceptToMarket(actorPromotional5);
-            
+
             market.update();
             System.out.println("\n__________________________\n__________________________\n");
             market.acceptToMarket(actorPromotional);
@@ -55,20 +58,27 @@ public class App {
             market.update();
 
             System.out.println();
-            System.out.println(String.format("Количество людей, принимающих участие в акции - %d", PromotionalClient.getCountParticipant()));
-            System.out.println(String.format("Максимальное количество участников в акции - %d", Market.getCountMaxParticipantInAction()));
+            System.out.println(String.format("Количество людей, принимающих участие в акции - %d",
+                    PromotionalClient.getCountParticipant()));
+            System.out.println(String.format("Максимальное количество участников в акции - %d",
+                    Market.getCountMaxParticipantInAction()));
             System.out.println();
-            
-            // try {
-            //     System.out.println(((iReturnOrder) actor1).returnOrder());
-            // } catch (Exception e) {
-            //     System.out.println(e.getMessage());
-            // }
             ps.close();
             fos.close();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        
+
+        System.setOut(originalOut);
+        try (FileReader reader = new FileReader(
+                "C:\\Users\\Саня\\Desktop\\Учеба\\Программирование. Специализация\\Объектно-ориентированное программирование. Семинары\\OOP_Seminar\\Seminar2\\Supermarket\\src\\log.txt")) {
+            int charInFile;
+            while ((charInFile = reader.read()) != -1) {
+                System.out.print((char) charInFile);
+
+            }
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
     }
 }

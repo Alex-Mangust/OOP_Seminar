@@ -147,7 +147,9 @@ public class Market implements iMarcketBehaviour, iQueueBehaviour {
         for (iActorBehaviour actor : queue) {
             if (!actor.isMakeOrder()) {
                 actor.setMakeOrder(true);
-                System.out.println(String.format("Клиент %s сделал заказ", actor.getActor().getName()));
+                if (!(actor instanceof TaxInspector)) {
+                    System.out.println(String.format("Клиент %s сделал заказ", actor.getActor().getName()));
+                }
             } else {
                 actor.setMakeOrder(false);
                 System.out.println(actor.getActor().returnOrder());
