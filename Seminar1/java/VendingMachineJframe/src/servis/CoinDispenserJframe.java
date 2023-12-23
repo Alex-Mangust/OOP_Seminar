@@ -33,7 +33,7 @@ public class CoinDispenserJframe extends HolderJframe {
         if (priceProducts.get(numberProduct) == coins) {
             pay = "Оплата прошла успешно! Ожидается выдача.";
             confirmation = true;
-        } else if (priceProducts.get(numberProduct) <= coins) {
+        } else if (priceProducts.get(numberProduct) < coins) {
             pay = String.format("Оплата прошла успешно! Ожидается выдача.\nВаша сдача %d рублей.",
                     coins - priceProducts.get(numberProduct));
             confirmation = true;

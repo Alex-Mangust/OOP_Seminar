@@ -75,6 +75,7 @@ public class Market implements iMarcketBehaviour, iQueueBehaviour {
             System.out.println(String.format("Клиент %s ушел из магазина", actor.getActor().getName()));
             queue.remove(actor);
         }
+        if (!queue.isEmpty()) queue.clear();
 
     }
 
@@ -85,9 +86,9 @@ public class Market implements iMarcketBehaviour, iQueueBehaviour {
     @Override
     public void update() {
         takeOrder();
-        System.out.println();
+        // System.out.println();
         giveOrder();
-        System.out.println();
+        // System.out.println();
         releaseFromQueue();
     }
 
@@ -113,11 +114,10 @@ public class Market implements iMarcketBehaviour, iQueueBehaviour {
                                 "Клиенту %s отказано в получении заказа! Превышено максимальное колличество участников акции.",
                                 actor.getActor().getName()));
                     }
-
                 }
             }
         }
-
+        System.out.println();
     }
 
     /**
@@ -133,6 +133,7 @@ public class Market implements iMarcketBehaviour, iQueueBehaviour {
                 System.out.println(String.format("Клиент %s ушел из очереди", actor.getActor().getName()));
             }
         }
+        System.out.println();
         releseFromMarket(releaseActors);
     }
 
@@ -147,10 +148,12 @@ public class Market implements iMarcketBehaviour, iQueueBehaviour {
             if (!actor.isMakeOrder()) {
                 actor.setMakeOrder(true);
                 System.out.println(String.format("Клиент %s сделал заказ", actor.getActor().getName()));
-
+            } else {
+                actor.setMakeOrder(false);
+                System.out.println(actor.getActor().returnOrder());
             }
         }
-
+        if (queue.getLast().getActor().isMakeOrder()) System.out.println();
     }
 
     /**

@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -39,7 +38,7 @@ public class App {
         assortiment.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Toolkit toolKit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolKit.getScreenSize();
-        assortiment.setBounds(dimension.width / 2 - 400, dimension.height / 2 - 400, 800, 800);
+        assortiment.setBounds(dimension.width / 2 - 300, dimension.height / 2 - 300, 600, 600);
         JTextComponent assortimentText = new JTextArea();
         String allAssortiment = "";
         for (ProductJframe prod : machine.getProduct()) {
@@ -88,8 +87,7 @@ public class App {
         String choiceProduct = "";
         for (ProductJframe product : machine.getProduct()) {
             if (VendingMachineJframe.getNumberProducts(product) == choice) {
-                choiceProduct = String.format("Вы вабрали продукт = %s\nЦена продукта = %d рублей\n", product.getName(),
-                        product.getPrice());
+                choiceProduct = String.format("Вы выбрали продукт = %s\nЦена продукта = %d рублей\n", product.getName(), product.getPrice());
             }
         }
         JFrame choiceFrame = new JFrame("Выбранный продукт");

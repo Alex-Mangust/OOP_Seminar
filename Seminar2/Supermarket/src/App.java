@@ -47,7 +47,11 @@ public class App {
             market.acceptToMarket(actorPromotional3);
             market.acceptToMarket(actorPromotional4);
             market.acceptToMarket(actorPromotional5);
-            System.out.println();
+            
+            market.update();
+            System.out.println("\n__________________________\n__________________________\n");
+            market.acceptToMarket(actorPromotional);
+            market.acceptToMarket(actorPromotional1);
             market.update();
 
             System.out.println();
@@ -55,11 +59,11 @@ public class App {
             System.out.println(String.format("Максимальное количество участников в акции - %d", Market.getCountMaxParticipantInAction()));
             System.out.println();
             
-            try {
-                System.out.println(((iReturnOrder) actor1).returnOrder());
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            // try {
+            //     System.out.println(((iReturnOrder) actor1).returnOrder());
+            // } catch (Exception e) {
+            //     System.out.println(e.getMessage());
+            // }
             ps.close();
             fos.close();
         } catch (Exception ex) {
