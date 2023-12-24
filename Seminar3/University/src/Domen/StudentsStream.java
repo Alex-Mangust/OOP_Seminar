@@ -33,6 +33,14 @@ public class StudentsStream implements Iterable<GroupeStudents> {
     public Iterator<GroupeStudents> iterator() {
         return new StudentsStreamIterator(studentsStreamList);
     }
-    
+    @Override
+    public String toString() {
+        String groupeString = new String();
+        for (GroupeStudents groupeStudents : studentsStreamList) {
+            groupeString += groupeStudents.toString();
+        }
+        return String.format("\nНомер потока: %d, Количество групп: %d\n\n%s", numberStream, studentsStreamList.size(), groupeString);
+    }
 
 }
+// Переопределить методы ToString классов StudentGroup(выводить идентификатор группы, количество студентов и список студентов) и StudentSteam(выводить номер потока, количество групп и список студентов с указанием идентификатора группы)
