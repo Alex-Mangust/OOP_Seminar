@@ -10,6 +10,7 @@ public class StudentIerator implements Iterator<Student>{
         this.students = students;
         count = 0;
     }
+
     @Override
     public boolean hasNext() {
         return count < students.size();

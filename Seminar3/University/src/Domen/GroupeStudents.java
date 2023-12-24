@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class GroupeStudents implements Iterable<Student> {
+public class GroupeStudents implements Iterable<Student>, Comparable<GroupeStudents> {
     private int numberGroupe;
     List<Student> students;
     public GroupeStudents(int numberGroupe, List<Student> students) {
@@ -35,6 +35,13 @@ public class GroupeStudents implements Iterable<Student> {
     @Override
     public Iterator<Student> iterator() {
         return new StudentIerator(students);
+    }
+
+    @Override
+    public int compareTo(GroupeStudents o) {
+        if (this.students.size() < o.students.size()) return 1;
+        else if (this.students.size() > o.students.size()) return -1;
+        else return 0;
     }
 
     
