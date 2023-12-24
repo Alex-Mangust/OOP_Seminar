@@ -1,12 +1,21 @@
 package Domen;
 
-public class Teacher {
+/** Класс, описывающий преподавателя университета. Является наследником класса Person */
+public class Teacher extends Person{
     private String academicDegree;
 
-    public Teacher(String academicDegree) {
+    /**
+     * Конструктор класса
+     * @param name - имя преподавателя
+     * @param age - возраст преподавателя
+     * @param academicDegree - академическая степень преподавателя
+     */
+    public Teacher(String name, int age, String academicDegree) {
+        super(name, age);
         this.academicDegree = academicDegree;
     }
 
+    /** Метод, возвращающий академическую степень преподавателя */
     public String getAcademicDegree() {
         return academicDegree;
     }

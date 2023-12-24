@@ -6,7 +6,7 @@ import java.util.List;
 /** Класс, описывающий группу студентов. Имеет интерфейсы Iterable и Comparable */
 public class GroupeStudents implements Iterable<Student>, Comparable<GroupeStudents> {
     private int numberGroupe;
-    List<Student> students;
+    private List<Student> students;
 
     /**
      * Конструктор класса

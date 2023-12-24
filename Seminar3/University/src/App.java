@@ -8,6 +8,7 @@ import Domen.StudentsStream;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        // Инициализирую экземпляры классов Student
         Student student1 = new Student("Иван", 21);
         Student student2 = new Student("Анна", 23);
         Student student3 = new Student("Константин", 20);
@@ -18,7 +19,6 @@ public class App {
         Student student8 = new Student("Алексей", 23);
         Student student9 = new Student("Александра", 21);
         Student student10 = new Student("Александр", 20);
-
         Student student11 = new Student("Елена", 23);
         Student student12 = new Student("Глеб", 22);
         Student student13 = new Student("Егор", 21);
@@ -32,17 +32,19 @@ public class App {
         Student student21 = new Student("Руслан", 20);
         Student student22 = new Student("Олеся", 22);
 
+        // Создаю коллекции List с экземплярами класса Student
         List<Student> students1 = new ArrayList<>();
         List<Student> students2 = new ArrayList<>();
         List<Student> students3 = new ArrayList<>();
         List<Student> students4 = new ArrayList<>();
         List<Student> students5 = new ArrayList<>();
 
+        // Добавляю экземпляры класса Student в коллекции List
         students1.add(student3);
         students1.add(student2);
         students1.add(student4);
         students1.add(student11);
-        students1.add(student10);
+        students1.add(student9);
         students1.add(student5);
 
         students2.add(student1);
@@ -61,19 +63,21 @@ public class App {
         students4.add(student12);
         students4.add(student6);
 
-        students5.add(student9);
+        students5.add(student10);
         students5.add(student22);
         students5.add(student21);
 
+        // Инициализирую экземпляры класса GroupeStudents и передаю, в качестве аргументов, номера групп и коллекции List, состоящии из экземпляров класса Student
         GroupeStudents studentsGroupe1 = new GroupeStudents(5281, students1);
         GroupeStudents studentsGroupe2 = new GroupeStudents(5098, students2);
         GroupeStudents studentsGroupe3 = new GroupeStudents(5703, students3);
         GroupeStudents studentsGroupe4 = new GroupeStudents(5476, students4);
         GroupeStudents studentsGroupe5 = new GroupeStudents(5026, students5);
 
-        for (Student student : studentsGroupe1) {
-            System.out.println(student);
-        }
+        // Вывожу в консоль всех студентов из 1 группы 
+        // for (Student student : studentsGroupe1) {
+        //     System.out.println(student);
+        // }
 
         // Collections.sort(studentsGroupe1.getStudents());
         // System.out.println();
@@ -81,7 +85,9 @@ public class App {
         //     System.out.println(student);
         // }
 
+        // Инициализирую экземпляр класса StudentStream (студенческий поток)
         StudentsStream studentsStream = new StudentsStream();
+        // Добавляю в экземпляр класса StudentStream экземпляры класса GroupeStudents (группы студентов)
         studentsStream.add(studentsGroupe1);
         studentsStream.add(studentsGroupe4);
         studentsStream.add(studentsGroupe2);
@@ -93,7 +99,7 @@ public class App {
         // System.out.println("Группы не отсортированны");
         // System.out.println(studentsStream.getNumberStream() + "\n");
         // for (GroupeStudents groupe : studentsStream) {
-        //     System.out.println(groupe);
+        //     System.out.println(groupe); 
         //     System.out.println();
         // }
         // System.out.println();
@@ -101,50 +107,51 @@ public class App {
         // System.out.println("Группы отсортированны по количеству студентов и идентификатору группы (по убыванию)");
         // System.out.println("Сами студенты в группах отсортированы по возрасту и идентификатору (по возрастанию)");
         // System.out.println(studentsStream.getNumberStream() + "\n");
-        
+        // Collections.sort((List<GroupeStudents>) studentsStream.getStudentsStreamList());  // Сортирую группы
         // for (GroupeStudents groupe : studentsStream) {
-        //     Collections.sort((List<Student>) groupe.getStudents()); 
+        //     Collections.sort((List<Student>) groupe.getStudents());  // Сортирую студентов в каждой группе
         //     System.out.println(groupe);
         //     System.out.println();
         // }
 
         
         // Вывод c переопределением toString для класса GroupeStudents и StudentsStream
-        // System.out.println("Группы не отсортированны");
-        // System.out.print(studentsStream);
-        // Collections.sort((List<GroupeStudents>) studentsStream.getStudentsStreamList());
-        // for (GroupeStudents groupe : studentsStream.getStudentsStreamList()) {
-        //     Collections.sort((List<Student>) groupe.getStudents()); 
-        // }
-        // System.out.println("Группы отсортированны по количеству студентов и идентификатору группы (по убыванию)");
-        // System.out.println("Сами студенты в группах отсортированы по возрасту и идентификатору (по возрастанию)");
-        // System.out.print(studentsStream);
+        System.out.println("Группы не отсортированны");
+        System.out.print(studentsStream); // Вывожу список групп студенческого потока
+
+        Collections.sort((List<GroupeStudents>) studentsStream.getStudentsStreamList()); // Сортирую группы в студенческом потоке
+        for (GroupeStudents groupe : studentsStream.getStudentsStreamList()) {
+            Collections.sort((List<Student>) groupe.getStudents());  // Сортирую студентов в каждой группе
+        }
+        System.out.println("Группы отсортированны по количеству студентов и идентификатору группы (по убыванию)");
+        System.out.println("Сами студенты в группах отсортированы по возрасту и идентификатору (по возрастанию)");
+        System.out.print(studentsStream); // Вывожу список групп студенческого потока
 
 
         // Добавляю второй поток
-        // List<StudentsStream> university = new ArrayList<StudentsStream>();
-        // university.add(studentsStream);
-        // StudentsStream studentsStream2 = new StudentsStream();
-        // Student student1G2 = new Student("Алена", 20);
+        // List<StudentsStream> university = new ArrayList<StudentsStream>(); // Создаю коллекцию List с экземплярами класса StudentStream
+        // university.add(studentsStream); // Добавляю в коллекцию первый поток
+        // StudentsStream studentsStream2 = new StudentsStream(); // Инициализирую экземпляр класса StudentsStream (Создаю второй поток)
+        // Student student1G2 = new Student("Алена", 20);  // Инициализирую экземпляры класса Student
         // Student student2G2 = new Student("Кирилл", 22);
         // Student student3G2 = new Student("Руслан", 20);
         // Student student4G2 = new Student("Олеся", 22);
 
-        // List<Student> students1G2 = new ArrayList<>();
-        // students1G2.add(student1G2);
+        // List<Student> students1G2 = new ArrayList<>();  // Инициализирую коллекцию List из экземпляров класса Student
+        // students1G2.add(student1G2); // Добавляю в коллекцию студентов
         // students1G2.add(student2G2);
         // students1G2.add(student3G2);
         // students1G2.add(student4G2);
-        // GroupeStudents groupeStudents6 = new GroupeStudents(9821, students1G2);
-        // studentsStream2.add(groupeStudents6);
-        // university.add(studentsStream2);
-        // Collections.sort((List<GroupeStudents>) studentsStream.getStudentsStreamList());
-        // Collections.sort((List<GroupeStudents>) studentsStream2.getStudentsStreamList());
+        // GroupeStudents groupeStudents6 = new GroupeStudents(9821, students1G2); // Инициализирую экземпляр класса GroupeStudents и передаю, в качестве аргументов, номер группы и коллекцию List, состоящую из экземпляров класса Student
+        // studentsStream2.add(groupeStudents6); // Добавляю во второй поток группу
+        // university.add(studentsStream2); // Добавляю в коллекцию university второй поток
+        // Collections.sort((List<GroupeStudents>) studentsStream.getStudentsStreamList()); // Сортирую первый поток
+        // Collections.sort((List<GroupeStudents>) studentsStream2.getStudentsStreamList()); // Сортирую второй поток
         // for (StudentsStream stream : university) {
         //     for (GroupeStudents groupe : stream.getStudentsStreamList()) {
-        //         Collections.sort((List<Student>) groupe.getStudents()); 
+        //         Collections.sort((List<Student>) groupe.getStudents());  // Сортирую студентов в каждой группе
         //     }
-        //     System.out.println(stream);
+        //     System.out.println(stream); // Вывожу информацию о каждом потоке
         // }
     }
 }

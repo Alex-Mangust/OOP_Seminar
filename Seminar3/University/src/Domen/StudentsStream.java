@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/** Класс, описывающий студенческий поток. Имеет интерфейс Iterable */
 public class StudentsStream implements Iterable<GroupeStudents> {
     private List<GroupeStudents> studentsStreamList;
     private int numberStream;
@@ -13,26 +14,41 @@ public class StudentsStream implements Iterable<GroupeStudents> {
         countStream = 0;
     }
 
+    /**
+     * Конструктор класса
+     * При инициализации экземпляра класса инициализирует новую коллекцию - поток студентов
+     */
     public StudentsStream() {
         studentsStreamList = new ArrayList<GroupeStudents>();
-        countStream++;
-        numberStream = countStream;
+        countStream++; // Количество студенческих потоков увеличивается на 1
+        numberStream = countStream; // Студенческому потоку присваивается номер
     }
 
+    /**
+     * Метод, добавляющий группы студентов в поток
+     * @param groupeStudents - группа студентов
+     */
     public void add(GroupeStudents groupeStudents) {
         studentsStreamList.add(groupeStudents);
     }
 
+    /** Метод, возвращающий номер потока */
     public String getNumberStream() {
         return String.format("Номер потока %d", numberStream);
     }
+
+    /** Метод, возвращающий колекцию List с группами студентов */
     public List<GroupeStudents> getStudentsStreamList() {
         return studentsStreamList;
     }
+
+    /** Переопределенный метод, необходимый для того чтобы производить итерацию с экземпляром класса StudentStream  */
     @Override
     public Iterator<GroupeStudents> iterator() {
         return new StudentsStreamIterator(studentsStreamList);
     }
+
+    /** Переопределенный метод. Возвращает строку с информацией об экземпляре класса */
     @Override
     public String toString() {
         String groupeString = new String();
@@ -43,4 +59,3 @@ public class StudentsStream implements Iterable<GroupeStudents> {
     }
 
 }
-// Переопределить методы ToString классов StudentGroup(выводить идентификатор группы, количество студентов и список студентов) и StudentSteam(выводить номер потока, количество групп и список студентов с указанием идентификатора группы)
