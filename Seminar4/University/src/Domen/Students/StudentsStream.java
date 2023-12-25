@@ -1,9 +1,8 @@
-package Domen;
+package Domen.Students;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 
 /** Класс, описывающий студенческий поток. Имеет интерфейс Iterable */
 public class StudentsStream implements Iterable<GroupeStudents> {
