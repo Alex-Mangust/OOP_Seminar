@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import Controler.AccountControler;
@@ -83,7 +84,7 @@ public class App {
         //     System.out.println(student);
         // }
 
-        // Collections.sort(studentsGroupe1.getStudents());
+        // Collections.sort(studentsGroupe1.getGroupe());
         // System.out.println();
         // for (Student student : studentsGroupe1) {
         //     System.out.println(student);
@@ -113,7 +114,7 @@ public class App {
         // System.out.println(studentsStream.getNumberStream() + "\n");
         // Collections.sort((List<GroupeStudents>) studentsStream.getStudentsStreamList());  // Сортирую группы
         // for (GroupeStudents groupe : studentsStream) {
-        //     Collections.sort((List<Student>) groupe.getStudents());  // Сортирую студентов в каждой группе
+        //     Collections.sort((List<Student>) groupe.getGroupe());  // Сортирую студентов в каждой группе
         //     System.out.println(groupe);
         //     System.out.println();
         // }
@@ -125,7 +126,7 @@ public class App {
 
         // Collections.sort((List<GroupeStudents>) studentsStream.getStudentsStreamList()); // Сортирую группы в студенческом потоке
         // for (GroupeStudents groupe : studentsStream.getStudentsStreamList()) {
-        //     Collections.sort((List<Student>) groupe.getStudents());  // Сортирую студентов в каждой группе
+        //     Collections.sort((List<Student>) groupe.getGroupe());  // Сортирую студентов в каждой группе
         // }
         // System.out.println("Группы отсортированны по количеству студентов и идентификатору группы (по убыванию)");
         // System.out.println("Сами студенты в группах отсортированы по возрасту и идентификатору (по возрастанию)");
@@ -153,7 +154,7 @@ public class App {
         // Collections.sort((List<GroupeStudents>) studentsStream2.getStudentsStreamList()); // Сортирую второй поток
         // for (StudentsStream stream : university) {
         //     for (GroupeStudents groupe : stream.getStudentsStreamList()) {
-        //         Collections.sort((List<Student>) groupe.getStudents());  // Сортирую студентов в каждой группе
+        //         Collections.sort((List<Student>) groupe.getGroupe());  // Сортирую студентов в каждой группе
         //     }
         //     System.out.println(stream); // Вывожу информацию о каждом потоке
         // }
@@ -163,9 +164,10 @@ public class App {
         Teacher teacher3 = new Teacher("Мария", 55, "Доктор наук");
         Teacher teacher4 = new Teacher("Елена", 36, "Доцент");
         Employee employee = new Employee("Виталий", 32, "Разнорабочий");
+        System.out.println();
         System.out.println(new PersonComparator<Teacher>().compare(teacher, teacher2));
         System.out.println(new PersonComparator<Student>().compare(student21, student22));
-        // AccountControler controler = new AccountControler();
+        System.out.println();
         AccountControler.paySalary(teacher, 40000);
         AccountControler.paySalary(employee, 40000);
         System.out.println();
@@ -179,7 +181,6 @@ public class App {
         System.out.println(teachers);
         System.out.println();
         System.out.println(studentsGroupe1);
-        
         System.out.println(AccountControler.averageAge(studentsGroupe1));
     }
 }

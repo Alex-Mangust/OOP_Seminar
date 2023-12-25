@@ -7,13 +7,13 @@ import Domen.Person;
 import Domen.Worker;
 
 public class AccountControler {
-    public static <T extends Worker> void paySalary(T person, int paySalary) {
+    public static <T> void paySalary(Worker person, int paySalary) {
         System.out.println(String.format("%s выплачено %d рублей", person.getName(), paySalary));
     }
     
-    public static <T extends Person> float averageAge(List<T> groupePeople){
+    public static float averageAge(List<Person> groupePeople){
         float averageAgePeople = 0;
-        for (T t : groupePeople) {
+        for (Person t : groupePeople) {
             averageAgePeople += (float)t.getAge();
         }
         return averageAgePeople = averageAgePeople / groupePeople.size();
