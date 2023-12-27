@@ -2,7 +2,7 @@ package Domen.Teachers;
 
 import Domen.Worker;
 
-/** Класс, описывающий преподавателя университета. Является наследником класса Person */
+/** Класс, описывающий преподавателя университета. Является наследником класса Worker */
 public class Teacher extends Worker{
     private String academicDegree;
 
@@ -12,8 +12,8 @@ public class Teacher extends Worker{
      * @param age - возраст преподавателя
      * @param academicDegree - академическая степень преподавателя
      */
-    public Teacher(String name, int age, String academicDegree) {
-        super(name, age);
+    public Teacher(String name, int age, String academicDegree, int salary) {
+        super(name, age, salary);
         this.academicDegree = academicDegree;
     }
 

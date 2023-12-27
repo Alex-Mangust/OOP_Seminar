@@ -2,8 +2,10 @@ package Domen;
 
 import java.util.Comparator;
 
+/** Обобщенный класс, необходимый для сравнения экземпляров классов наследников класса Person */
 public class PersonComparator<T extends Person> implements Comparator<T> {
 
+    /** Переопределенный метод, необходимый для сравнения экземпляров класса PersonComparator */
     @Override
     public int compare(T o1, T o2) {
        // System.out.println(super.getName() + "-" + o.getName());

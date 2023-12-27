@@ -56,7 +56,7 @@ public class GroupeStudents implements Iterable<Student>, Comparable<GroupeStude
         return new StudentIerator(students);
     }
 
-    /** Переопределенный метод, необходимый для сравнения экземплярами класса GroupeStudent */
+    /** Переопределенный метод, необходимый для сравнения экземпляров класса GroupeStudent */
     @Override
     public int compareTo(GroupeStudents o) {
         if (this.students.size() < o.students.size()) return 1;

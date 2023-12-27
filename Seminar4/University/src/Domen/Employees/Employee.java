@@ -2,7 +2,7 @@ package Domen.Employees;
 
 import Domen.Worker;
 
-/** Класс, описывающий сотрудника университета. Является наследником класса Person */
+/** Класс, описывающий сотрудника университета. Является наследником класса Worker */
 public class Employee extends Worker {
     private String specialication;
 
@@ -12,8 +12,8 @@ public class Employee extends Worker {
      * @param age - возраст сотрудника
      * @param specialication - специализация сотрудника
      */
-    public Employee(String name, int age, String specialication) {
-        super(name, age);
+    public Employee(String name, int age, String specialication, int salary) {
+        super(name, age, salary);
         this.specialication = specialication;
     }
 

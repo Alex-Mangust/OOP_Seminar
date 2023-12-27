@@ -160,12 +160,16 @@ public class App {
         //     }
         //     System.out.println(stream); // Вывожу информацию о каждом потоке
         // }
+
+        
+        // Инициализирую экземпляры классов StudentService
         StudentService groupe1Servise = new StudentService();
         StudentService groupe2Servise = new StudentService();
         StudentService groupe3Servise = new StudentService();
         StudentService groupe4Servise = new StudentService();
         StudentService groupe5Servise = new StudentService();
-
+        
+        // Добавляю в сервисы группы студентов
         groupe1Servise.add(studentsGroupe1);
         groupe2Servise.add(studentsGroupe2);
         groupe3Servise.add(studentsGroupe3);
@@ -173,43 +177,55 @@ public class App {
         groupe5Servise.add(studentsGroupe5);
 
 
-
-        Teacher teacher = new Teacher("Галина", 50, "Доцент");
-        Teacher teacher2 = new Teacher("Валентина", 55, "Кандидат наук");
-        Teacher teacher3 = new Teacher("Мария", 55, "Доктор наук");
-        Teacher teacher4 = new Teacher("Елена", 36, "Доцент");
-
-        Employee employee = new Employee("Виталий", 32, "Разнорабочий");
-        Employee employee2 = new Employee("Михаил", 45, "Охранник");
-        Employee employee3 = new Employee("Галина", 62, "Вахтер");
+        // Инициализирую экземпляры классов Teacher
+        Teacher teacher = new Teacher("Галина", 50, "Доцент", 65000);
+        Teacher teacher2 = new Teacher("Валентина", 55, "Кандидат наук", 80000 );
+        Teacher teacher3 = new Teacher("Мария", 55, "Доктор наук", 90000);
+        Teacher teacher4 = new Teacher("Елена", 36, "Доцент", 60000);
+        
+        // Инициализирую экземпляры классов Employee
+        Employee employee = new Employee("Виталий", 32, "Разнорабочий", 35000);
+        Employee employee2 = new Employee("Михаил", 45, "Охранник", 40000);
+        Employee employee3 = new Employee("Галина", 62, "Вахтер", 20000);
 
         // System.out.println();
-        // System.out.println(new PersonComparator<Teacher>().compare(teacher, teacher2));
-        // System.out.println(new PersonComparator<Student>().compare(student21, student22));
+        // System.out.println(new PersonComparator<Teacher>().compare(teacher, teacher2)); // Сравниваю экземпляры класса Teacher с помощью метода экземпляра обобщенного класса PersonComparator
+        // System.out.println(new PersonComparator<Student>().compare(student21, student22)); // Сравниваю экземпляры класса Student с помощью метода экземпляра обобщенного класса PersonComparator
         // System.out.println();
-
+        
+        /** Вызываю статический paySalary класса AccountControler для выдачи указанным экземплярам класса Teacher и Employee указанной суммы */
         AccountControler.paySalary(teacher, 40000);
         AccountControler.paySalary(employee, 40000);
         System.out.println();
-
+        
+        /** Инициализирую экземпляр касса TeacherService */
         TeacherService teachers = new TeacherService();
+
+        /** Добавляю в сервис teachers преподавателей */
         teachers.add(teacher);
         teachers.add(teacher2);
         teachers.add(teacher3);
         teachers.add(teacher4);
-
+        
+        /** Инициализирую экземпляр класса EmployeeService */
         EmployeeService employees = new EmployeeService();
+
+        /** Добавляю в сервис emploees сотрудников */
         employees.add(employee);
         employees.add(employee2);
         employees.add(employee3);
+        
+        System.out.println(teachers); // Вывожу в консоль информацию о всех преподавателей, с которыми работает сервис teachers
+        teachers.sortByFamily(); // Сортирую преподавателей, с которыми работает сервис teachers
+        System.out.println("Отсортированный"); 
+        System.out.println(teachers); // Вывожу в консоль информацию о всех преподавателей, с которыми работает сервис teachers в отсортированном виде 
 
-        System.out.println(teachers);
-        teachers.sortByFamily();
-        System.out.println(teachers);
+        System.out.print(employees); // Вывожу в консоль всех информацию о сотрудниках, с которыми работает сервис employees
 
-
+        // Вывожуу в консоль сердний возраст сотрудников, с которыми работает сервис employees
+        System.out.println(String.format("Средний возраст: %f", AccountControler.averageAge(employees)));
         System.out.println();
-        System.out.println(teachers);
-        System.out.println(AccountControler.averageAge(teachers));
+
+        AccountControler.paySalary(teachers); // Выдаю зарплату всем преподавателям, с которыми работает сервис teachers
     }
 }
