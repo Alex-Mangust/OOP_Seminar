@@ -2,12 +2,12 @@ package Controler;
 
 import java.util.List;
 
-import Domen.GroupeInUniversity;
 import Domen.Person;
 import Domen.Worker;
+import Service.iPersonService;
 
 public class AccountControler {
-    public static <T> void paySalary(Worker person, int paySalary) {
+   public static <T> void paySalary(Worker person, int paySalary) {
         System.out.println(String.format("%s выплачено %d рублей", person.getName(), paySalary));
     }
     
@@ -19,11 +19,12 @@ public class AccountControler {
         return averageAgePeople = averageAgePeople / groupePeople.size();
     }
 
-    public static <T extends GroupeInUniversity> float averageAge(T groupePeople){
+    public static <T extends iPersonService> float averageAge(T groupePeople){
         float averageAgePeople = 0;
-        for (Person e : groupePeople.getGroupe()) {
-            averageAgePeople += (float)e.getAge();
+        for (Object e : groupePeople.getAll()) {
+            Person person = (Person)e;
+            averageAgePeople += (float)person.getAge();
         }
-        return averageAgePeople = averageAgePeople / groupePeople.getGroupe().size();
+        return averageAgePeople = averageAgePeople / groupePeople.getAll().size();
     }
 }

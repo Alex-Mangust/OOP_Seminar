@@ -3,9 +3,13 @@ package Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import Domen.GroupeStudents;
 import Domen.PersonComparator;
-import Domen.Student;
+import Domen.Students.GroupeStudents;
+import Domen.Students.Student;
+
+// import Domen.GroupeStudents;
+// import Domen.PersonComparator;
+// import Domen.Student;
 
 public class StudentService implements iPersonService<Student>{
     private int countStudents;
@@ -56,6 +60,6 @@ public class StudentService implements iPersonService<Student>{
             stringStudentList += numberRecord + ". " + student + "\n";
             numberRecord++;
         }
-        return String.format("Список работников:\n%s", stringStudentList);
+        return String.format("Список учеников:\n%s", stringStudentList);
     }
 }

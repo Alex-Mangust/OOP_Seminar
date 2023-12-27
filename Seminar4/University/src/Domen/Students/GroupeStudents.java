@@ -3,10 +3,8 @@ package Domen.Students;
 import java.util.Iterator;
 import java.util.List;
 
-import Domen.GroupeInUniversity;
-
 /** Класс, описывающий группу студентов. Имеет интерфейсы Iterable и Comparable */
-public class GroupeStudents extends GroupeInUniversity implements Iterable<Student>, Comparable<GroupeStudents> {
+public class GroupeStudents implements Iterable<Student>, Comparable<GroupeStudents> {
     private int numberGroupe;
     private List<Student> students;
 
@@ -31,7 +29,6 @@ public class GroupeStudents extends GroupeInUniversity implements Iterable<Stude
     }
 
     /** Метод возвращает список студентов */
-    @Override
     public List<Student> getGroupe() {
         return students;
     }

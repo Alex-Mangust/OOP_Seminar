@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Domen.PersonComparator;
-import Domen.Teachers.GroupeTeachers;
 import Domen.Teachers.Teacher;
 
 public class TeacherService implements iPersonService<Teacher> {
@@ -24,12 +23,6 @@ public class TeacherService implements iPersonService<Teacher> {
     public void add(Teacher teacher) {
         teachersList.add(teacher);
         countTeachers++;
-    }
-    public void add(GroupeTeachers groupeTeachers) {
-        for (Teacher teacher : groupeTeachers) {
-            teachersList.add(teacher);
-            countTeachers++;
-        }
     }
 
     @Override

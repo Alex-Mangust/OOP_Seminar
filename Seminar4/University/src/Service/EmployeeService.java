@@ -5,7 +5,6 @@ import java.util.List;
 
 import Domen.PersonComparator;
 import Domen.Employees.Employee;
-import Domen.Employees.GroupeEmployees;
 
 public class EmployeeService implements iPersonService<Employee> {
     private int countEmployee;
@@ -26,12 +25,6 @@ public class EmployeeService implements iPersonService<Employee> {
     public void add(Employee employee) {
         employeeList.add(employee);
         countEmployee++;
-    }
-    public void add(GroupeEmployees groupeeEmployees) {
-        for (Employee employee : groupeeEmployees) {
-            employeeList.add(employee);
-            countEmployee++;
-        }
     }
 
     @Override

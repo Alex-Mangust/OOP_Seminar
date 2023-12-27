@@ -9,6 +9,8 @@ import Domen.Students.GroupeStudents;
 import Domen.Students.Student;
 import Domen.Students.StudentsStream;
 import Domen.Teachers.Teacher;
+import Service.EmployeeService;
+import Service.StudentService;
 import Service.TeacherService;
 
 public class App {
@@ -158,29 +160,56 @@ public class App {
         //     }
         //     System.out.println(stream); // Вывожу информацию о каждом потоке
         // }
+        StudentService groupe1Servise = new StudentService();
+        StudentService groupe2Servise = new StudentService();
+        StudentService groupe3Servise = new StudentService();
+        StudentService groupe4Servise = new StudentService();
+        StudentService groupe5Servise = new StudentService();
+
+        groupe1Servise.add(studentsGroupe1);
+        groupe2Servise.add(studentsGroupe2);
+        groupe3Servise.add(studentsGroupe3);
+        groupe4Servise.add(studentsGroupe4);
+        groupe5Servise.add(studentsGroupe5);
+
+
 
         Teacher teacher = new Teacher("Галина", 50, "Доцент");
         Teacher teacher2 = new Teacher("Валентина", 55, "Кандидат наук");
         Teacher teacher3 = new Teacher("Мария", 55, "Доктор наук");
         Teacher teacher4 = new Teacher("Елена", 36, "Доцент");
+
         Employee employee = new Employee("Виталий", 32, "Разнорабочий");
-        System.out.println();
-        System.out.println(new PersonComparator<Teacher>().compare(teacher, teacher2));
-        System.out.println(new PersonComparator<Student>().compare(student21, student22));
-        System.out.println();
+        Employee employee2 = new Employee("Михаил", 45, "Охранник");
+        Employee employee3 = new Employee("Галина", 62, "Вахтер");
+
+        // System.out.println();
+        // System.out.println(new PersonComparator<Teacher>().compare(teacher, teacher2));
+        // System.out.println(new PersonComparator<Student>().compare(student21, student22));
+        // System.out.println();
+
         AccountControler.paySalary(teacher, 40000);
         AccountControler.paySalary(employee, 40000);
         System.out.println();
+
         TeacherService teachers = new TeacherService();
         teachers.add(teacher);
         teachers.add(teacher2);
         teachers.add(teacher3);
         teachers.add(teacher4);
+
+        EmployeeService employees = new EmployeeService();
+        employees.add(employee);
+        employees.add(employee2);
+        employees.add(employee3);
+
         System.out.println(teachers);
         teachers.sortByFamily();
         System.out.println(teachers);
+
+
         System.out.println();
-        System.out.println(studentsGroupe1);
-        System.out.println(AccountControler.averageAge(studentsGroupe1));
+        System.out.println(teachers);
+        System.out.println(AccountControler.averageAge(teachers));
     }
 }
