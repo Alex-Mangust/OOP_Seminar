@@ -2,24 +2,30 @@ package Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import Domen.PersonComparator;
-import Domen.Students.GroupeStudents;
-import Domen.Students.Student;
+import Domen.Person_G;
+import Domen.PersonComparator_G;
+import Domen.Students.GroupeStudents_G;
+import Domen.Students.Student_G;
+
+// import Domen.GroupeStudents;
+// import Domen.PersonComparator;
+// import Domen.Student;
 
 /**
  * Класс, описывающий работу сервиса со студентами университета. Имеет интерфейс
  * iPersonService
  */
-public class StudentService implements iPersonService<Student> {
+public class StudentService_G implements iPersonService_G<Student_G> {
     private int countStudents; // Количество студентов, с которыми работает текущий сервис
-    private List<Student> studentsList; // Список студентов, с которыми работает текущий сервис
+    private List<Student_G> studentsList; // Список студентов, с которыми работает текущий сервис
 
     /** Конструктор класса. */
-    public StudentService() {
+    public StudentService_G() {
         studentsList = new ArrayList<>();
     }
 
@@ -28,7 +34,7 @@ public class StudentService implements iPersonService<Student> {
      * текущий сервис
      */
     @Override
-    public List<Student> getAll() {
+    public List<Student_G> getAll() {
         return studentsList;
     }
 
@@ -40,14 +46,14 @@ public class StudentService implements iPersonService<Student> {
     }
 
     /** Метод, необходимый для добавления студентов к текущему сервису */
-    public void add(Student student) {
-        studentsList.add(student);
+    public void add(Person_G<Student_G> student) {
+        studentsList.add(student.getPerson());
         countStudents++;
     }
 
     /** Метод, необходимый для добавления групп студентов к текущему сервису */
-    public void add(GroupeStudents groupeStudents) {
-        for (Student student : groupeStudents) {
+    public void add(GroupeStudents_G groupeStudents) {
+        for (Student_G student : groupeStudents) {
             studentsList.add(student);
             countStudents++;
         }
@@ -60,12 +66,13 @@ public class StudentService implements iPersonService<Student> {
      * @return объединенный сервис студентов
      * (Дублирующие сервисы в слиянии не учитываются)
      */
-    public static StudentService merge(StudentService... service) {
-        Set<StudentService> setService = new LinkedHashSet<>(Arrays.asList(service));
-        StudentService newService = new StudentService();
-        for (StudentService studentService : setService) {
-            for (Student student : studentService.getAll()) {
-                newService.add(student);
+    public static StudentService_G merge(StudentService_G... service) {
+        Set<StudentService_G> setService = new LinkedHashSet<>(Arrays.asList(service));
+        StudentService_G newService = new StudentService_G();
+        for (StudentService_G studentService : setService) {
+            for (Student_G student : studentService.getAll()) {
+                Person_G<Student_G> person = new Person_G<>(student);
+                newService.add(person);
             }
         }
         return newService;
@@ -77,7 +84,7 @@ public class StudentService implements iPersonService<Student> {
      */
     @Override
     public void create(String name, int age) {
-        Student student = new Student(name, age);
+        Student_G student = new Student_G(name, age);
         studentsList.add(student);
         countStudents++;
     }
@@ -86,15 +93,20 @@ public class StudentService implements iPersonService<Student> {
      * Метод, необходимый для сортировки экземпляров класса Student текущего сервиса
      */
     public void sortByFamily() {
-        PersonComparator<Student> personComparator = new PersonComparator<Student>();
-        studentsList.sort(personComparator);
+        PersonComparator_G<Person_G<Student_G>> personComparator = new PersonComparator_G<>();
+        Comparator<Student_G> studentComparator = (e1, e2) -> personComparator.compare(new Person_G<>(e1), new Person_G<>(e2));
+        studentsList.sort(studentComparator);
     }
 
+    /**
+     * Переопределенный метод, необходимый для получения информации о текущем
+     * сервисе
+     */
     @Override
     public String toString() {
         String stringStudentList = new String();
         int numberRecord = 1;
-        for (Student student : studentsList) {
+        for (Student_G student : studentsList) {
             stringStudentList += numberRecord + ". " + student + "\n";
             numberRecord++;
         }

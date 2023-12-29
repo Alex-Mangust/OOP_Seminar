@@ -2,49 +2,52 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import Controler.AccountControler;
-import Domen.PersonComparator;
-import Domen.Employees.Employee;
-import Domen.Students.GroupeStudents;
-import Domen.Students.Student;
-import Domen.Students.StudentsStream;
-import Domen.Teachers.Teacher;
-import Service.EmployeeService;
-import Service.StudentService;
-import Service.TeacherService;
+import Controler.AccountControler_G;
+import Domen.Person_G;
+import Domen.PersonComparator_G;
+import Domen.Employees.Employee_G;
+import Domen.Students.GroupeStudents_G;
+import Domen.Students.Student_G;
+import Domen.Students.StudentsStream_G;
+import Domen.Teachers.Teacher_G;
+import Service.EmployeeService_G;
+import Service.StudentService_G;
+import Service.TeacherService_G;
 
 public class App {
     public static void main(String[] args) throws Exception {
         // Инициализирую экземпляры классов Student
-        Student student1 = new Student("Иван", 21);
-        Student student2 = new Student("Анна", 23);
-        Student student3 = new Student("Константин", 20);
-        Student student4 = new Student("Сергей", 22);
-        Student student5 = new Student("Ольга", 23);
-        Student student6 = new Student("Михаил", 21);
-        Student student7 = new Student("Мария", 20);
-        Student student8 = new Student("Алексей", 23);
-        Student student9 = new Student("Александра", 21);
-        Student student10 = new Student("Александр", 20);
-        Student student11 = new Student("Елена", 23);
-        Student student12 = new Student("Глеб", 22);
-        Student student13 = new Student("Егор", 21);
-        Student student14 = new Student("Анастасия", 20);
-        Student student15 = new Student("Ульяна", 23);
-        Student student16 = new Student("Денис", 20);
-        Student student17 = new Student("Илья", 22);
-        Student student18 = new Student("Наталья", 21);
-        Student student19 = new Student("Алёна", 20);
-        Student student20 = new Student("Кирилл", 22);
-        Student student21 = new Student("Руслан", 20);
-        Student student22 = new Student("Олеся", 22);
+
+        
+        Person_G<Student_G> student1 = new Person_G<>(new Student_G("Иван", 21));
+        Person_G<Student_G> student2 = new Person_G<>(new Student_G("Анна", 23));
+        Person_G<Student_G> student3 = new Person_G<>(new Student_G("Константин", 20));
+        Person_G<Student_G> student4 = new Person_G<>(new Student_G("Сергей", 22));
+        Person_G<Student_G> student5 = new Person_G<>(new Student_G("Ольга", 23));
+        Person_G<Student_G> student6 = new Person_G<>(new Student_G("Михаил", 21));
+        Person_G<Student_G> student7 = new Person_G<>(new Student_G("Мария", 20));
+        Person_G<Student_G> student8 = new Person_G<>(new Student_G("Алексей", 23));
+        Person_G<Student_G> student9 = new Person_G<>(new Student_G("Александра", 21));
+        Person_G<Student_G> student10 = new Person_G<>(new Student_G("Александр", 20));
+        Person_G<Student_G> student11 = new Person_G<>(new Student_G("Елена", 23));
+        Person_G<Student_G> student12 = new Person_G<>(new Student_G("Глеб", 22));
+        Person_G<Student_G> student13 = new Person_G<>(new Student_G("Егор", 21));
+        Person_G<Student_G> student14 = new Person_G<>(new Student_G("Анастасия", 20));
+        Person_G<Student_G> student15 = new Person_G<>(new Student_G("Ульяна", 23));
+        Person_G<Student_G> student16 = new Person_G<>(new Student_G("Денис", 20));
+        Person_G<Student_G> student17 = new Person_G<>(new Student_G("Илья", 22));
+        Person_G<Student_G> student18 = new Person_G<>(new Student_G("Наталья", 21));
+        Person_G<Student_G> student19 = new Person_G<>(new Student_G("Алёна", 20));
+        Person_G<Student_G> student20 = new Person_G<>(new Student_G("Кирилл", 22));
+        Person_G<Student_G> student21 = new Person_G<>(new Student_G("Руслан", 20));
+        Person_G<Student_G> student22 = new Person_G<>(new Student_G("Олеся", 22));
 
         // Создаю коллекции List с экземплярами класса Student
-        List<Student> students1 = new ArrayList<>();
-        List<Student> students2 = new ArrayList<>();
-        List<Student> students3 = new ArrayList<>();
-        List<Student> students4 = new ArrayList<>();
-        List<Student> students5 = new ArrayList<>();
+        List<Person_G<Student_G>> students1 = new ArrayList<>();
+        List<Person_G<Student_G>> students2 = new ArrayList<>();
+        List<Person_G<Student_G>> students3 = new ArrayList<>();
+        List<Person_G<Student_G>> students4 = new ArrayList<>();
+        List<Person_G<Student_G>> students5 = new ArrayList<>();
 
         // Добавляю экземпляры класса Student в коллекции List
         students1.add(student3);
@@ -75,11 +78,11 @@ public class App {
         students5.add(student21);
 
         // Инициализирую экземпляры класса GroupeStudents и передаю, в качестве аргументов, номера групп и коллекции List, состоящии из экземпляров класса Student
-        GroupeStudents studentsGroupe1 = new GroupeStudents(5281, students1);
-        GroupeStudents studentsGroupe2 = new GroupeStudents(5098, students2);
-        GroupeStudents studentsGroupe3 = new GroupeStudents(5703, students3);
-        GroupeStudents studentsGroupe4 = new GroupeStudents(5476, students4);
-        GroupeStudents studentsGroupe5 = new GroupeStudents(5026, students5);
+        GroupeStudents_G studentsGroupe1 = new GroupeStudents_G(5281, students1);
+        GroupeStudents_G studentsGroupe2 = new GroupeStudents_G(5098, students2);
+        GroupeStudents_G studentsGroupe3 = new GroupeStudents_G(5703, students3);
+        GroupeStudents_G studentsGroupe4 = new GroupeStudents_G(5476, students4);
+        GroupeStudents_G studentsGroupe5 = new GroupeStudents_G(5026, students5);
 
         // Вывожу в консоль всех студентов из 1 группы 
         // for (Student student : studentsGroupe1) {
@@ -93,7 +96,7 @@ public class App {
         // }
 
         // Инициализирую экземпляр класса StudentStream (студенческий поток)
-        StudentsStream studentsStream = new StudentsStream();
+        StudentsStream_G studentsStream = new StudentsStream_G();
         // Добавляю в экземпляр класса StudentStream экземпляры класса GroupeStudents (группы студентов)
         studentsStream.add(studentsGroupe1);
         studentsStream.add(studentsGroupe4);
@@ -107,7 +110,6 @@ public class App {
         // System.out.println(studentsStream.getNumberStream() + "\n");
         // for (GroupeStudents groupe : studentsStream) {
         //     System.out.println(groupe); 
-        //     System.out.println();
         // }
         // System.out.println();
 
@@ -139,12 +141,12 @@ public class App {
         // List<StudentsStream> university = new ArrayList<StudentsStream>(); // Создаю коллекцию List с экземплярами класса StudentStream
         // university.add(studentsStream); // Добавляю в коллекцию первый поток
         // StudentsStream studentsStream2 = new StudentsStream(); // Инициализирую экземпляр класса StudentsStream (Создаю второй поток)
-        // Student student1G2 = new Student("Алена", 20);  // Инициализирую экземпляры класса Student
-        // Student student2G2 = new Student("Кирилл", 22);
-        // Student student3G2 = new Student("Руслан", 20);
-        // Student student4G2 = new Student("Олеся", 22);
+        // Person<Student> student1G2 = new Person<>(new Student("Алена", 20));  // Инициализирую экземпляры класса Student
+        // Person<Student> student2G2 = new Person<>(new Student("Кирилл", 22));
+        // Person<Student> student3G2 = new Person<>(new Student("Руслан", 20));
+        // Person<Student> student4G2 = new Person<>(new Student("Олеся", 22));
 
-        // List<Student> students1G2 = new ArrayList<>();  // Инициализирую коллекцию List из экземпляров класса Student
+        // List<Person<Student>> students1G2 = new ArrayList<>();  // Инициализирую коллекцию List из экземпляров класса Student
         // students1G2.add(student1G2); // Добавляю в коллекцию студентов
         // students1G2.add(student2G2);
         // students1G2.add(student3G2);
@@ -163,11 +165,11 @@ public class App {
 
         
         // Инициализирую экземпляры классов StudentService
-        StudentService groupe1Servise = new StudentService();
-        StudentService groupe2Servise = new StudentService();
-        StudentService groupe3Servise = new StudentService();
-        StudentService groupe4Servise = new StudentService();
-        StudentService groupe5Servise = new StudentService();
+        StudentService_G groupe1Servise = new StudentService_G();
+        StudentService_G groupe2Servise = new StudentService_G();
+        StudentService_G groupe3Servise = new StudentService_G();
+        StudentService_G groupe4Servise = new StudentService_G();
+        StudentService_G groupe5Servise = new StudentService_G();
         
         // Добавляю в сервисы группы студентов
         groupe1Servise.add(studentsGroupe1);
@@ -178,57 +180,58 @@ public class App {
 
 
         // Инициализирую экземпляры классов Teacher
-        Teacher teacher = new Teacher("Галина", 50, "Доцент", 65000);
-        Teacher teacher2 = new Teacher("Валентина", 55, "Кандидат наук", 80000 );
-        Teacher teacher3 = new Teacher("Мария", 55, "Доктор наук", 90000);
-        Teacher teacher4 = new Teacher("Елена", 36, "Доцент", 60000);
+        Person_G<Teacher_G> teacher1 = new Person_G<>(new Teacher_G("Галина", 50, "Доцент", 65000));
+        Person_G<Teacher_G> teacher2 = new Person_G<>(new Teacher_G("Валентина", 55, "Кандидат наук", 80000));
+        Person_G<Teacher_G> teacher3 = new Person_G<>(new Teacher_G("Мария", 55, "Доктор наук", 90000));
+        Person_G<Teacher_G> teacher4 = new Person_G<>(new Teacher_G("Елена", 36, "Доцент", 60000));
         
         // Инициализирую экземпляры классов Employee
-        Employee employee = new Employee("Виталий", 32, "Разнорабочий", 35000);
-        Employee employee2 = new Employee("Михаил", 45, "Охранник", 40000);
-        Employee employee3 = new Employee("Галина", 62, "Вахтер", 20000);
+        Person_G<Employee_G> employee1 = new Person_G<>(new Employee_G("Виталий", 32, "Разнорабочий", 35000));
+        Person_G<Employee_G> employee2 = new Person_G<>(new Employee_G("Михаил", 45, "Охранник", 40000));
+        Person_G<Employee_G> employee3 = new Person_G<>(new Employee_G("Галина", 62, "Вахтер", 20000));
 
-        // System.out.println();
-        // System.out.println(new PersonComparator<Teacher>().compare(teacher, teacher2)); // Сравниваю экземпляры класса Teacher с помощью метода экземпляра обобщенного класса PersonComparator
-        // System.out.println(new PersonComparator<Student>().compare(student21, student22)); // Сравниваю экземпляры класса Student с помощью метода экземпляра обобщенного класса PersonComparator
-        // System.out.println();
-        
-        /** Вызываю статический paySalary класса AccountControler для выдачи указанным экземплярам класса Teacher и Employee указанной суммы */
-        AccountControler.paySalary(teacher, 40000);
-        AccountControler.paySalary(employee, 40000);
+        System.out.println();
+        System.out.println(new PersonComparator_G<Person_G<Teacher_G>>().compare(teacher1, teacher2)); // Сравниваю экземпляры класса Teacher с помощью метода экземпляра обобщенного класса PersonComparator
+        System.out.println(new PersonComparator_G<Person_G<Student_G>>().compare(student21, student22)); // Сравниваю экземпляры класса Student с помощью метода экземпляра обобщенного класса PersonComparator
         System.out.println();
         
-        /** Инициализирую экземпляр класса TeacherService */
-        TeacherService teachers = new TeacherService();
+        // /** Вызываю статический paySalary класса AccountControler для выдачи указанным экземплярам класса Teacher и Employee указанной суммы */
+        AccountControler_G.paySalary(teacher1, 40000);
+        AccountControler_G.paySalary(employee1, 40000);
+        System.out.println();
+        
+        // // /** Инициализирую экземпляр касса TeacherService */
+        TeacherService_G teachers = new TeacherService_G();
 
         /** Добавляю в сервис teachers преподавателей */
-        teachers.add(teacher);
+        teachers.add(teacher1);
         teachers.add(teacher2);
         teachers.add(teacher3);
         teachers.add(teacher4);
         
-        /** Инициализирую экземпляр класса EmployeeService */
-        EmployeeService employees = new EmployeeService();
+        // /** Инициализирую экземпляр класса EmployeeService */
+        EmployeeService_G employees = new EmployeeService_G();
 
         /** Добавляю в сервис emploees сотрудников */
-        employees.add(employee);
+        employees.add(employee1);
         employees.add(employee2);
         employees.add(employee3);
         
-        System.out.println(teachers); // Вывожу в консоль информацию о всех преподавателях, с которыми работает сервис teachers
+        System.out.println(teachers); // Вывожу в консоль информацию о всех преподавателей, с которыми работает сервис teachers
         teachers.sortByFamily(); // Сортирую преподавателей, с которыми работает сервис teachers
         System.out.println("Отсортированный"); 
-        System.out.println(teachers); // Вывожу в консоль информацию о всех преподавателях, с которыми работает сервис teachers в отсортированном виде 
+        System.out.println(teachers); // Вывожу в консоль информацию о всех преподавателей, с которыми работает сервис teachers в отсортированном виде 
 
         System.out.print(employees); // Вывожу в консоль информацию о сотрудниках, с которыми работает сервис employees
 
         // Вывожуу в консоль сердний возраст сотрудников, с которыми работает сервис employees
-        System.out.println(String.format("Средний возраст: %f", AccountControler.averageAge(employees)));
+        System.out.println(String.format("Средний возраст: %f", AccountControler_G.averageAge(employees)));
         System.out.println();
 
-        AccountControler.paySalary(teachers); // Выдаю зарплату всем преподавателям, с которыми работает сервис teachers
-
-        StudentService twoGroups = StudentService.merge(groupe1Servise, groupe2Servise, groupe3Servise, groupe4Servise, groupe5Servise, groupe5Servise);
-        System.out.println(twoGroups);
+        AccountControler_G.paySalary(teachers); // Выдаю зарплату всем преподавателям, с которыми работает сервис teachers
+        
+        // Инициализирую новый экземпляр класса StudentService и вызываю метод merge, который сливает вместе сервисы работы со всеми группами студентов (в качестве последних двух агрументов приведен один и тот же сервис, для демонстрации того, что не проходит дублирование)
+        StudentService_G twoGroups = StudentService_G.merge(groupe1Servise, groupe2Servise, groupe3Servise, groupe4Servise, groupe5Servise, groupe5Servise);
+        System.out.println(twoGroups); // Вывожу в консоль информацию о новом сервисе
     }
 }

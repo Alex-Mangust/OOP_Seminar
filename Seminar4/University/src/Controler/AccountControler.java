@@ -4,7 +4,7 @@ import java.util.List;
 
 import Domen.Person;
 import Domen.Worker;
-import Service.IWorkerService;
+import Service.iWorkerService;
 import Service.iPersonService;
 
 /** Класс, необходимы для упраления сервисами*/
@@ -16,7 +16,7 @@ public class AccountControler {
     }
 
     /** Обобщенный метод, необходимый для выдачи всем работникам, с которыми работает указанный сервис */
-    public static <T extends IWorkerService> void paySalary(T service) {
+    public static <T extends iWorkerService<?>> void paySalary(T service) {
         System.out.println(service.getSalaryPeoples());
     }
 
@@ -30,7 +30,7 @@ public class AccountControler {
     }
 
     /** Обобщенный метод, необходимый для вычисления среднего возраста работников, либо студентов указанного сервиса */
-    public static <T extends iPersonService> float averageAge(T groupePeople) {
+    public static <T extends iPersonService<?>> float averageAge(T groupePeople) {
         float averageAgePeople = 0;
         for (Object e : groupePeople.getAll()) {
             Person person = (Person) e;
