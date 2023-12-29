@@ -9,7 +9,10 @@ import Domen.Person_G;
 import Domen.PersonComparator_G;
 import Domen.Employees.Employee_G;
 
-/** Класс, описывающий работу сервиса с сотрудниками университета. Имеет интерфейсы iPersonService и IworkerService */
+/**
+ * Класс, описывающий работу сервиса с сотрудниками университета. Имеет
+ * интерфейсы iPersonService и IworkerService
+ */
 public class EmployeeService_G implements iPersonService_G<Employee_G>, iWorkerService_G<Employee_G> {
     private int countEmployee; // Количество сотрудников, с которыми работает текущий сервис
     private List<Employee_G> employeeList; // Список сотрудников, с которыми работает текущий сервис
@@ -19,41 +22,54 @@ public class EmployeeService_G implements iPersonService_G<Employee_G>, iWorkerS
         employeeList = new ArrayList<>();
     }
 
-    /** Переопределенный метод. Возвращает список сотрудников, с которыми работает текущий сервис */
+    /**
+     * Переопределенный метод. Возвращает список сотрудников, с которыми работает
+     * текущий сервис
+     */
     @Override
     public List<Employee_G> getAll() {
         return employeeList;
     }
 
-    /** Метод, возвращающий количество сотрудников, с которыми работает текущий сервис */
+    /**
+     * Метод, возвращающий количество сотрудников, с которыми работает текущий
+     * сервис
+     */
     public int getCountEmployee() {
         return countEmployee;
     }
 
     /** Метод, необходимый для добавления сотрудника к текущему сервису */
-    public void add(Person_G<Employee_G> person) {        
+    public void add(Person_G<Employee_G> person) {
+        // Условие проверет, является ли текущая персона сотрудником
         if (Employee_G.class.isAssignableFrom(person.getPerson().getClass())) {
-            employeeList.add((Employee_G)person.getPerson());
+            employeeList.add((Employee_G) person.getPerson());
             countEmployee++;
         }
     }
 
-    /** Метод, необходимый для создания нового экземпляра класса Employee и добавления его к текущему сервису */
+    /**
+     * Метод, необходимый для создания нового экземпляра класса Employee и
+     * добавления его к текущему сервису
+     */
     @Override
     public void create(String name, int age) {
         Employee_G employee = new Employee_G(name, age, "Разнорабочий", 30000);
         employeeList.add(employee);
         countEmployee++;
     }
-    
-    //** Метод, необходимый для сортировки экземпляров класса Employee текущего сервиса */
-    public void sortByFamily(){
+
+    // ** Метод, необходимый для сортировки экземпляров класса Employee текущего
+    // сервиса */
+    public void sortByFamily() {
         PersonComparator_G<Person_G<Employee_G>> personComparator = new PersonComparator_G<>();
-        Comparator<Employee_G> employeeComparator = (e1, e2) -> personComparator.compare(new Person_G<>(e1), new Person_G<>(e2));
+        Comparator<Employee_G> employeeComparator = (e1, e2) -> personComparator.compare(new Person_G<>(e1), new Person_G<>(e2)); // Эта строка нужна, так как PersonComparator принимает в качестве аргументов экземпляры класса Person.
         employeeList.sort(employeeComparator);
     }
 
-    /** Переопределенный метод, необходимый для получения информации о текущем сервисе */
+    /**
+     * Переопределенный метод, необходимый для получения информации о текущем сервисе
+     */
     @Override
     public String toString() {
         String stringEmployeeList = new String();
@@ -65,7 +81,9 @@ public class EmployeeService_G implements iPersonService_G<Employee_G>, iWorkerS
         return String.format("Список работников:\n%s", stringEmployeeList);
     }
 
-    /** Метод, необходимый для выдачи зарплаты сотрудникам, с которыми работает текущий сервис */
+    /**
+     * Метод, необходимый для выдачи зарплаты сотрудникам, с которыми работает текущий сервис
+     */
     @Override
     public String getSalaryPeoples() {
         String outputLine = new String();

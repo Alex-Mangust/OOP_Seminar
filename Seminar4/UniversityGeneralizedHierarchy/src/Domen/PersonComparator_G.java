@@ -2,7 +2,7 @@ package Domen;
 
 import java.util.Comparator;
 
-/** Обобщенный класс, необходимый для сравнения экземпляров классов наследников класса Person */
+/** Обобщенный класс, необходимый для сравнения экземпляров класса Person */
 public class PersonComparator_G<T extends Person_G<? extends iPerson_G>> implements Comparator<T> {
 
     /** Переопределенный метод, необходимый для сравнения экземпляров класса PersonComparator */

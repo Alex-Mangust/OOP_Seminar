@@ -12,10 +12,6 @@ import Domen.PersonComparator_G;
 import Domen.Students.GroupeStudents_G;
 import Domen.Students.Student_G;
 
-// import Domen.GroupeStudents;
-// import Domen.PersonComparator;
-// import Domen.Student;
-
 /**
  * Класс, описывающий работу сервиса со студентами университета. Имеет интерфейс
  * iPersonService
@@ -66,8 +62,8 @@ public class StudentService_G implements iPersonService_G<Student_G> {
      * @return объединенный сервис студентов
      * (Дублирующие сервисы в слиянии не учитываются)
      */
-    public static StudentService_G merge(StudentService_G... service) {
-        Set<StudentService_G> setService = new LinkedHashSet<>(Arrays.asList(service));
+    public static StudentService_G merge(StudentService_G... service) { // Принимает динамическое количество аргументов
+        Set<StudentService_G> setService = new LinkedHashSet<>(Arrays.asList(service)); // Коллекция set необходима для того, чтобы не было дублирующихся аргументов
         StudentService_G newService = new StudentService_G();
         for (StudentService_G studentService : setService) {
             for (Student_G student : studentService.getAll()) {
@@ -94,7 +90,8 @@ public class StudentService_G implements iPersonService_G<Student_G> {
      */
     public void sortByFamily() {
         PersonComparator_G<Person_G<Student_G>> personComparator = new PersonComparator_G<>();
-        Comparator<Student_G> studentComparator = (e1, e2) -> personComparator.compare(new Person_G<>(e1), new Person_G<>(e2));
+        Comparator<Student_G> studentComparator = (e1, e2) -> personComparator.compare(new Person_G<>(e1), new Person_G<>
+        (e2)); // Эта строка нужна, так как PersonComparator принимает в качестве аргументов экземпляры класса Person.
         studentsList.sort(studentComparator);
     }
 

@@ -24,7 +24,7 @@ public class AccountControler_G {
     }
 
     /**
-     * Обобщенный метод, необходимый для выдачи всем работникам, с которыми работает
+     * Обобщенный метод, необходимый для выдачи зарплаты всем работникам, с которыми работает
      * указанный сервис
      */
     public static void paySalary(iWorkerService_G<? extends iWorker_G> service) {

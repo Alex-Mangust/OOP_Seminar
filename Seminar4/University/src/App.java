@@ -193,8 +193,10 @@ public class App {
         // System.out.println(new PersonComparator<Student>().compare(student21, student22)); // Сравниваю экземпляры класса Student с помощью метода экземпляра обобщенного класса PersonComparator
         // System.out.println();
         
-        /** Вызываю статический paySalary класса AccountControler для выдачи указанным экземплярам класса Teacher и Employee указанной суммы */
+        // Вызываю статический метод paySalary класса AccountControler для выдачи указанному экземпляру класса Teacher указанной суммы
         AccountControler.paySalary(teacher, 40000);
+
+        // Вызываю статический метод paySalary класса AccountControler для выдачи указанному экземпляру класса Employee указанной суммы
         AccountControler.paySalary(employee, 40000);
         System.out.println();
         
@@ -222,13 +224,14 @@ public class App {
 
         System.out.print(employees); // Вывожу в консоль информацию о сотрудниках, с которыми работает сервис employees
 
-        // Вывожуу в консоль сердний возраст сотрудников, с которыми работает сервис employees
+        // Вывожу в консоль средний возраст сотрудников, с которыми работает сервис employees
         System.out.println(String.format("Средний возраст: %f", AccountControler.averageAge(employees)));
         System.out.println();
 
         AccountControler.paySalary(teachers); // Выдаю зарплату всем преподавателям, с которыми работает сервис teachers
-
+        
+        // Инициализирую новый экземпляр класса StudentService и вызываю метод merge, который сливает друг с другом сервисы работы со всеми группами студентов (в качестве последних двух агрументов приведен один и тот же сервис, для демонстрации того, что не проходит дублирование)
         StudentService twoGroups = StudentService.merge(groupe1Servise, groupe2Servise, groupe3Servise, groupe4Servise, groupe5Servise, groupe5Servise);
-        System.out.println(twoGroups);
+        System.out.println(twoGroups); // Вывожу в консоль информацию о новом сервисе
     }
 }

@@ -14,7 +14,7 @@ public class Worker extends Person implements Comparable<Worker> {
         this.salary = salary;
     }
 
-    /** Метод, возвращающий зарпалту работника */
+    /** Метод, возвращающий зарплату работника */
     public int getSalary() {
         return salary;
     }

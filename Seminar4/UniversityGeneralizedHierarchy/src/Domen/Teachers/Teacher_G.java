@@ -3,7 +3,7 @@ package Domen.Teachers;
 import Domen.iPerson_G;
 import Domen.iWorker_G;
 
-/** Класс, описывающий преподавателя университета. Является наследником класса Worker */
+/** Класс, описывающий преподавателя университета. Имеет интерфейсы Comparable, iPerson, iWorker */
 public class Teacher_G implements Comparable<Teacher_G>, iPerson_G, iWorker_G{
     private String academicDegree;
     private String name;
@@ -27,40 +27,43 @@ public class Teacher_G implements Comparable<Teacher_G>, iPerson_G, iWorker_G{
         return academicDegree;
     }
 
-    /** Метод, возвращающий зарпалту работника */
+    /** Метод, возвращающий зарпалту преподавателя */
     public int getSalary() {
         return salary;
     }
 
-    /** Метод возвращает имя */
+    /** Метод возвращает имя преподавателя */
     public String getName() {
         return name;
     }
 
     
-    /** Метод возвращает возраст */
+    /** Метод возвращает возраст преподавателя */
     public int getAge() {
         return age;
     }
 
+    /** Метод задает зарплату преподавателя */
     public void setSalary(int salary) {
         this.salary = salary;
     }
 
+    /** Метод задает академическую степень преподавателя */
     public void setAcademicDegree(String academicDegree) {
         this.academicDegree = academicDegree;
     }
 
-    /** Метод задает имя */
+    /** Метод задает имя преподавателя*/
     public void setName(String name) {
         this.name = name;
     }
 
-    /** Метод задает возраст */
+    /** Метод задает возраст преподавателя*/
     public void setAge(int age) {
         this.age = age;
     }
 
+    /** Переопределенный метод, необходимый для сравнения экземпляров класса Teacher */
     @Override
     public int compareTo(Teacher_G o) {
         if (this.getSalary() > o.getSalary()) return -1;

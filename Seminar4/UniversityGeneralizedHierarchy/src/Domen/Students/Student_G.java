@@ -2,7 +2,7 @@ package Domen.Students;
 
 import Domen.iPerson_G;
 
-/** Класс, описывающий студента университета. Является наследником класса Person. Имеет интерфейс Comparable */
+/** Класс, описывающий студента университета. Имеет интерфейсы Comparable, iPerson */
 public class Student_G implements Comparable<Student_G>, iPerson_G {
     private String name;
     private int age;
@@ -31,22 +31,22 @@ public class Student_G implements Comparable<Student_G>, iPerson_G {
         return id;
     }
 
-    /** Метод возвращает имя */
+    /** Метод возвращает имя студента */
     public String getName() {
         return name;
     }
 
-    /** Метод задает имя */
+    /** Метод задает имя студента */
     public void setName(String name) {
         this.name = name;
     }
 
-    /** Метод возвращает возраст */
+    /** Метод возвращает возраст студента */
     public int getAge() {
         return age;
     }
 
-    /** Метод задает возраст */
+    /** Метод задает возраст студента */
     public void setAge(int age) {
         this.age = age;
     }

@@ -15,7 +15,7 @@ public class AccountControler {
         System.out.println(String.format("%s выплачено %d рублей", person.getName(), paySalary));
     }
 
-    /** Обобщенный метод, необходимый для выдачи всем работникам, с которыми работает указанный сервис */
+    /** Обобщенный метод, необходимый для выдачи зарплаты всем работникам, с которыми работает указанный сервис */
     public static <T extends iWorkerService<?>> void paySalary(T service) {
         System.out.println(service.getSalaryPeoples());
     }

@@ -3,7 +3,7 @@ package Domen.Employees;
 import Domen.iPerson_G;
 import Domen.iWorker_G;
 
-/** Класс, описывающий сотрудника университета. Является наследником класса Worker */
+/** Класс, описывающий сотрудника университета. Имеет интерфейсы Comparable, iPerson, iWorker */
 public class Employee_G implements Comparable<Employee_G>, iPerson_G, iWorker_G {
     private String specialication;
     private String name;
@@ -15,6 +15,7 @@ public class Employee_G implements Comparable<Employee_G>, iPerson_G, iWorker_G 
      * @param name - имя сотрудника
      * @param age - возраст сотрудника
      * @param specialication - специализация сотрудника
+     * @param salary - зарплата сотрудника
      */
     public Employee_G(String name, int age, String specialication, int salary) {
         // super(name, age, salary);
@@ -24,7 +25,7 @@ public class Employee_G implements Comparable<Employee_G>, iPerson_G, iWorker_G 
         this.salary = salary;    
     }
 
-    /** Метод, возвращающий зарпалту работника */
+    /** Метод, возвращающий зарплату сотрудника */
     public int getSalary() {
         return salary;
     }
@@ -34,35 +35,37 @@ public class Employee_G implements Comparable<Employee_G>, iPerson_G, iWorker_G 
         return specialication;
     }
 
-    /** Метод возвращает имя */
+    /** Метод возвращает имя сотрудника */
     public String getName() {
         return name;
     }
 
-    
-    /** Метод возвращает возраст */
+    /** Метод возвращает возраст сотрдуника */
     public int getAge() {
         return age;
     }
 
+    /** Метод задает зарплату сотрудника */
     public void setSalary(int salary) {
         this.salary = salary;
     }
 
+    /** Метод задает специализацию сотрудника */
     public void setSpecialication(String specialication) {
         this.specialication = specialication;
     }
 
-    /** Метод задает имя */
+    /** Метод задает имя сотрудника */
     public void setName(String name) {
         this.name = name;
     }
 
-    /** Метод задает возраст */
+    /** Метод задает возраст сотрудника */
     public void setAge(int age) {
         this.age = age;
     }
 
+    /** Переопределенный метод, необходимы для сравнения экземпляров классов Employee */
     @Override
     public int compareTo(Employee_G o) {
         if (this.getSalary() > o.getSalary()) return -1;

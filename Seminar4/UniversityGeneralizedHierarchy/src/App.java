@@ -16,9 +16,7 @@ import Service.TeacherService_G;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        // Инициализирую экземпляры классов Student
-
-        
+        // Инициализирую экземпляры классов Person с параметром типа Student
         Person_G<Student_G> student1 = new Person_G<>(new Student_G("Иван", 21));
         Person_G<Student_G> student2 = new Person_G<>(new Student_G("Анна", 23));
         Person_G<Student_G> student3 = new Person_G<>(new Student_G("Константин", 20));
@@ -42,14 +40,14 @@ public class App {
         Person_G<Student_G> student21 = new Person_G<>(new Student_G("Руслан", 20));
         Person_G<Student_G> student22 = new Person_G<>(new Student_G("Олеся", 22));
 
-        // Создаю коллекции List с экземплярами класса Student
+        // Создаю коллекции List с экземплярами класса Person, имеющих параметр типа Student
         List<Person_G<Student_G>> students1 = new ArrayList<>();
         List<Person_G<Student_G>> students2 = new ArrayList<>();
         List<Person_G<Student_G>> students3 = new ArrayList<>();
         List<Person_G<Student_G>> students4 = new ArrayList<>();
         List<Person_G<Student_G>> students5 = new ArrayList<>();
 
-        // Добавляю экземпляры класса Student в коллекции List
+        // Добавляю экземпляры класса Person, имеющие параметры типа Student в коллекции List
         students1.add(student3);
         students1.add(student2);
         students1.add(student4);
@@ -77,7 +75,7 @@ public class App {
         students5.add(student22);
         students5.add(student21);
 
-        // Инициализирую экземпляры класса GroupeStudents и передаю, в качестве аргументов, номера групп и коллекции List, состоящии из экземпляров класса Student
+        // Инициализирую экземпляры класса GroupeStudents и передаю, в качестве аргументов, номера групп и коллекции List, состоящии из экземпляров класса Person, имеющих параметр типа Student
         GroupeStudents_G studentsGroupe1 = new GroupeStudents_G(5281, students1);
         GroupeStudents_G studentsGroupe2 = new GroupeStudents_G(5098, students2);
         GroupeStudents_G studentsGroupe3 = new GroupeStudents_G(5703, students3);
@@ -85,13 +83,13 @@ public class App {
         GroupeStudents_G studentsGroupe5 = new GroupeStudents_G(5026, students5);
 
         // Вывожу в консоль всех студентов из 1 группы 
-        // for (Student student : studentsGroupe1) {
+        // for (Student_G student : studentsGroupe1) {
         //     System.out.println(student);
         // }
 
-        // Collections.sort(studentsGroupe1.getGroupe());
+        // Collections.sort(studentsGroupe1.getGroupe()); // Сортирую студентов по возрасту и id
         // System.out.println();
-        // for (Student student : studentsGroupe1) {
+        // for (Student_G student : studentsGroupe1) {
         //     System.out.println(student);
         // }
 
@@ -108,7 +106,7 @@ public class App {
         // Вывод c переопределением toString для класса GroupeStudents
         // System.out.println("Группы не отсортированны");
         // System.out.println(studentsStream.getNumberStream() + "\n");
-        // for (GroupeStudents groupe : studentsStream) {
+        // for (GroupeStudents_G groupe : studentsStream) {
         //     System.out.println(groupe); 
         // }
         // System.out.println();
@@ -116,9 +114,9 @@ public class App {
         // System.out.println("Группы отсортированны по количеству студентов и идентификатору группы (по убыванию)");
         // System.out.println("Сами студенты в группах отсортированы по возрасту и идентификатору (по возрастанию)");
         // System.out.println(studentsStream.getNumberStream() + "\n");
-        // Collections.sort((List<GroupeStudents>) studentsStream.getStudentsStreamList());  // Сортирую группы
-        // for (GroupeStudents groupe : studentsStream) {
-        //     Collections.sort((List<Student>) groupe.getGroupe());  // Сортирую студентов в каждой группе
+        // Collections.sort((List<GroupeStudents_G>) studentsStream.getStudentsStreamList());  // Сортирую группы
+        // for (GroupeStudents_G groupe : studentsStream) {
+        //     Collections.sort((List<Student_G>) groupe.getGroupe());  // Сортирую студентов в каждой группе
         //     System.out.println(groupe);
         //     System.out.println();
         // }
@@ -128,9 +126,9 @@ public class App {
         // System.out.println("Группы не отсортированны");
         // System.out.print(studentsStream); // Вывожу список групп студенческого потока
 
-        // Collections.sort((List<GroupeStudents>) studentsStream.getStudentsStreamList()); // Сортирую группы в студенческом потоке
-        // for (GroupeStudents groupe : studentsStream.getStudentsStreamList()) {
-        //     Collections.sort((List<Student>) groupe.getGroupe());  // Сортирую студентов в каждой группе
+        // Collections.sort((List<GroupeStudents_G>) studentsStream.getStudentsStreamList()); // Сортирую группы в студенческом потоке
+        // for (GroupeStudents_G groupe : studentsStream.getStudentsStreamList()) {
+        //     Collections.sort((List<Student_G>) groupe.getGroupe());  // Сортирую студентов в каждой группе
         // }
         // System.out.println("Группы отсортированны по количеству студентов и идентификатору группы (по убыванию)");
         // System.out.println("Сами студенты в группах отсортированы по возрасту и идентификатору (по возрастанию)");
@@ -138,27 +136,27 @@ public class App {
 
 
         // Добавляю второй поток
-        // List<StudentsStream> university = new ArrayList<StudentsStream>(); // Создаю коллекцию List с экземплярами класса StudentStream
+        // List<StudentsStream_G> university = new ArrayList<StudentsStream_G>(); // Создаю коллекцию List с экземплярами класса StudentStream
         // university.add(studentsStream); // Добавляю в коллекцию первый поток
-        // StudentsStream studentsStream2 = new StudentsStream(); // Инициализирую экземпляр класса StudentsStream (Создаю второй поток)
-        // Person<Student> student1G2 = new Person<>(new Student("Алена", 20));  // Инициализирую экземпляры класса Student
-        // Person<Student> student2G2 = new Person<>(new Student("Кирилл", 22));
-        // Person<Student> student3G2 = new Person<>(new Student("Руслан", 20));
-        // Person<Student> student4G2 = new Person<>(new Student("Олеся", 22));
+        // StudentsStream_G studentsStream2 = new StudentsStream_G(); // Инициализирую экземпляр класса StudentsStream (Создаю второй поток)
+        // Person_G<Student_G> student1G2 = new Person_G<>(new Student_G("Алена", 20));  // Инициализирую экземпляры класса Person с параметром типа Student
+        // Person_G<Student_G> student2G2 = new Person_G<>(new Student_G("Кирилл", 22));
+        // Person_G<Student_G> student3G2 = new Person_G<>(new Student_G("Руслан", 20));
+        // Person_G<Student_G> student4G2 = new Person_G<>(new Student_G("Олеся", 22));
 
-        // List<Person<Student>> students1G2 = new ArrayList<>();  // Инициализирую коллекцию List из экземпляров класса Student
+        // List<Person_G<Student_G>> students1G2 = new ArrayList<>();  // Инициализирую коллекцию List из экземпляров класса Person, которые имеют параметры типа Student
         // students1G2.add(student1G2); // Добавляю в коллекцию студентов
         // students1G2.add(student2G2);
         // students1G2.add(student3G2);
         // students1G2.add(student4G2);
-        // GroupeStudents groupeStudents6 = new GroupeStudents(9821, students1G2); // Инициализирую экземпляр класса GroupeStudents и передаю, в качестве аргументов, номер группы и коллекцию List, состоящую из экземпляров класса Student
+        // GroupeStudents_G groupeStudents6 = new GroupeStudents_G(9821, students1G2); // Инициализирую экземпляр класса GroupeStudents и передаю, в качестве аргументов, номер группы и коллекцию List, состоящую из экземпляров класса Person, которые имеют параметры типа Student
         // studentsStream2.add(groupeStudents6); // Добавляю во второй поток группу
         // university.add(studentsStream2); // Добавляю в коллекцию university второй поток
-        // Collections.sort((List<GroupeStudents>) studentsStream.getStudentsStreamList()); // Сортирую первый поток
-        // Collections.sort((List<GroupeStudents>) studentsStream2.getStudentsStreamList()); // Сортирую второй поток
-        // for (StudentsStream stream : university) {
-        //     for (GroupeStudents groupe : stream.getStudentsStreamList()) {
-        //         Collections.sort((List<Student>) groupe.getGroupe());  // Сортирую студентов в каждой группе
+        // Collections.sort((List<GroupeStudents_G>) studentsStream.getStudentsStreamList()); // Сортирую первый поток
+        // Collections.sort((List<GroupeStudents_G>) studentsStream2.getStudentsStreamList()); // Сортирую второй поток
+        // for (StudentsStream_G stream : university) {
+        //     for (GroupeStudents_G groupe : stream.getStudentsStreamList()) {
+        //         Collections.sort((List<Student_G>) groupe.getGroupe());  // Сортирую студентов в каждой группе
         //     }
         //     System.out.println(stream); // Вывожу информацию о каждом потоке
         // }
@@ -179,28 +177,30 @@ public class App {
         groupe5Servise.add(studentsGroupe5);
 
 
-        // Инициализирую экземпляры классов Teacher
+        // Инициализирую экземпляры классов Person с параметром типа Teacher
         Person_G<Teacher_G> teacher1 = new Person_G<>(new Teacher_G("Галина", 50, "Доцент", 65000));
         Person_G<Teacher_G> teacher2 = new Person_G<>(new Teacher_G("Валентина", 55, "Кандидат наук", 80000));
         Person_G<Teacher_G> teacher3 = new Person_G<>(new Teacher_G("Мария", 55, "Доктор наук", 90000));
         Person_G<Teacher_G> teacher4 = new Person_G<>(new Teacher_G("Елена", 36, "Доцент", 60000));
         
-        // Инициализирую экземпляры классов Employee
+        // Инициализирую экземпляры классов Person с параметром типа Employee
         Person_G<Employee_G> employee1 = new Person_G<>(new Employee_G("Виталий", 32, "Разнорабочий", 35000));
         Person_G<Employee_G> employee2 = new Person_G<>(new Employee_G("Михаил", 45, "Охранник", 40000));
         Person_G<Employee_G> employee3 = new Person_G<>(new Employee_G("Галина", 62, "Вахтер", 20000));
 
         System.out.println();
-        System.out.println(new PersonComparator_G<Person_G<Teacher_G>>().compare(teacher1, teacher2)); // Сравниваю экземпляры класса Teacher с помощью метода экземпляра обобщенного класса PersonComparator
-        System.out.println(new PersonComparator_G<Person_G<Student_G>>().compare(student21, student22)); // Сравниваю экземпляры класса Student с помощью метода экземпляра обобщенного класса PersonComparator
+        System.out.println(new PersonComparator_G<Person_G<Teacher_G>>().compare(teacher1, teacher2)); // Сравниваю экземпляры класса Person, которые имеют парамер типа Teacher, с помощью метода экземпляра обобщенного класса PersonComparator
+        System.out.println(new PersonComparator_G<Person_G<Student_G>>().compare(student21, student22)); // Сравниваю экземпляры класса Person, которые имеют парамер типа Student, с помощью метода экземпляра обобщенного класса PersonComparator
         System.out.println();
         
-        // /** Вызываю статический paySalary класса AccountControler для выдачи указанным экземплярам класса Teacher и Employee указанной суммы */
+        /** Вызываю статический метод paySalary класса AccountControler для выдачи указанному экземпляру класса Person, который имеет параметр типа Teacher указанной суммы */
         AccountControler_G.paySalary(teacher1, 40000);
+
+        /** Вызываю статический метод paySalary класса AccountControler для выдачи указанному экземпляру класса Person, который имеет параметр типа Employee указанной суммы */
         AccountControler_G.paySalary(employee1, 40000);
         System.out.println();
         
-        // // /** Инициализирую экземпляр касса TeacherService */
+        /** Инициализирую экземпляр класса TeacherService */
         TeacherService_G teachers = new TeacherService_G();
 
         /** Добавляю в сервис teachers преподавателей */
@@ -209,7 +209,7 @@ public class App {
         teachers.add(teacher3);
         teachers.add(teacher4);
         
-        // /** Инициализирую экземпляр класса EmployeeService */
+        /** Инициализирую экземпляр класса EmployeeService */
         EmployeeService_G employees = new EmployeeService_G();
 
         /** Добавляю в сервис emploees сотрудников */
@@ -217,14 +217,14 @@ public class App {
         employees.add(employee2);
         employees.add(employee3);
         
-        System.out.println(teachers); // Вывожу в консоль информацию о всех преподавателей, с которыми работает сервис teachers
+        System.out.println(teachers); // Вывожу в консоль информацию о всех преподавателях, с которыми работает сервис teachers
         teachers.sortByFamily(); // Сортирую преподавателей, с которыми работает сервис teachers
         System.out.println("Отсортированный"); 
-        System.out.println(teachers); // Вывожу в консоль информацию о всех преподавателей, с которыми работает сервис teachers в отсортированном виде 
+        System.out.println(teachers); // Вывожу в консоль информацию о всех преподавателях, с которыми работает сервис teachers в отсортированном виде 
 
         System.out.print(employees); // Вывожу в консоль информацию о сотрудниках, с которыми работает сервис employees
 
-        // Вывожуу в консоль сердний возраст сотрудников, с которыми работает сервис employees
+        // Вывожу в консоль средний возраст сотрудников, с которыми работает сервис employees
         System.out.println(String.format("Средний возраст: %f", AccountControler_G.averageAge(employees)));
         System.out.println();
 
