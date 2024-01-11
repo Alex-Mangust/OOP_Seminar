@@ -5,9 +5,11 @@ import Controller.ControllerClass;
 import Controller.Interfaces.iGetModel;
 import Controller.Interfaces.iGetView;
 import Model.ModelClassFile;
+import Model.ModelClassHash;
 import Model.ModelClassList;
 import Model.Core.Student;
 import View.ViewClass;
+import View.ViewClassEng;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -62,10 +64,12 @@ public class App {
         students1.add(student21);
 
         iGetModel modelList = new ModelClassList(students1);
-        iGetView viewSimple = new ViewClass();
-
         iGetModel modelFile = new ModelClassFile("Seminar5\\MVCExemple\\MVCStudentApp\\file\\StudentDB.csv");
         // modelFile.saveAllStudentToFile(students1);
+        iGetModel modelHash = new ModelClassHash(students1);
+
+        iGetView viewSimple = new ViewClass();
+
 
         ControllerClass controller = new ControllerClass(modelFile, viewSimple);
         controller.run();

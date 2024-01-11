@@ -6,4 +6,5 @@ import Model.Core.Student;
 
 public interface iGetModel {
     public List<Student> getStudents();
+    public boolean deleteStudent(int id);
 }

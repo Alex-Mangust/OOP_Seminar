@@ -15,4 +15,20 @@ public class ModelClassList implements iGetModel {
     public List<Student> getStudents() {
         return students;
     }
+
+    @Override
+    public boolean deleteStudent(int id) {
+        boolean successfulDeletion = false;
+        Integer idRemove = null;
+        int idFind = 0;
+        for (Student student : students) {
+            if (student.getId() == id) {
+                successfulDeletion = true;
+                idRemove = idFind;    
+            }
+            idFind++;
+        }
+        if (idRemove != null) students.remove(students.get(idRemove));
+        return successfulDeletion;
+    }
 }

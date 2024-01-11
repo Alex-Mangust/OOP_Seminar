@@ -9,4 +9,5 @@ public interface iGetView {
 
     String prompt(String string);
     void exit(boolean exit);
+    int deleteStudent();
 }

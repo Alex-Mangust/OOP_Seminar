@@ -6,12 +6,12 @@ import java.util.Scanner;
 import Controller.Interfaces.iGetView;
 import Model.Core.Student;
 
-public class ViewClass implements iGetView {
+public class ViewClassEng implements iGetView {
     boolean exit = false;
 
     @Override
     public void printAllStudents(List<Student> students) {
-        System.out.println("------------Список студентов------------");
+        System.out.println("------------Students list------------");
         for (Student student : students) {
             System.out.println(student);
         }
@@ -34,8 +34,9 @@ public class ViewClass implements iGetView {
     @Override
     public int deleteStudent() {
         Scanner in = new Scanner(System.in);
-        System.out.print("Введите id студента, которого хотите удалить: ");
+        System.out.print("Enter the id of the student you want to delete: ");
         if (exit) in.close();
         return in.nextInt();
     }
 }
+

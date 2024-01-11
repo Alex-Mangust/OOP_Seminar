@@ -16,54 +16,87 @@ public class ModelClassFile implements iGetModel {
     public ModelClassFile(String fileName) {
         this.fileName = fileName;
 
-        try(FileWriter fw = new FileWriter(fileName, true))
-        {
-            fw.flush();    
+        try (FileWriter fw = new FileWriter(fileName, true)) {
+            fw.flush();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-   // @Override
+    // @Override
     public List<Student> getStudents() {
-        List<Student> students  = new ArrayList<Student>();
-        try
-        {
+        List<Student> students = new ArrayList<Student>();
+        try {
             File file = new File(fileName);
             FileReader fr = new FileReader(file);
             try (BufferedReader reader = new BufferedReader(fr)) {
                 String line = reader.readLine();
-                while(line!=null)
-                {
+                while (line != null) {
                     String[] param = line.split(" ");
-                    Student pers = new Student(param[0], Integer.parseInt(param[1]));
+                    Student pers = new Student(param[0], Integer.parseInt(param[1]), Integer.parseInt(param[2]));
                     students.add(pers);
                     line = reader.readLine();
                 }
             }
 
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         return students;
     }
 
-    public void saveAllStudentToFile(List<Student> students)
-    {
-        try(FileWriter fw = new FileWriter(fileName, true))
-        {
-            for(Student pers : students)
-            {
-                fw.write(pers.getName()+" "+pers.getAge()+" "+pers.getId());
+    public void saveAllStudentToFile(List<Student> students) {
+        try (FileWriter fw = new FileWriter(fileName, false)) {
+            for (Student pers : students) {
+                fw.write(pers.getName() + " " + pers.getAge() + " " + pers.getId());
                 fw.append('\n');
             }
-            fw.flush();    
+            fw.flush();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
+    @Override
+    public boolean deleteStudent(int id) {
+        boolean successfulDeletion = false;
+        List<Student> students = new ArrayList<Student>();
+        try {
+            File file = new File(fileName);
+            FileReader fr = new FileReader(file);
+            try (BufferedReader reader = new BufferedReader(fr)) {
+                String line = reader.readLine();
+                while (line != null) {
+                    String[] param = line.split(" ");
+                    Student pers = new Student(param[0], Integer.parseInt(param[1]), Integer.parseInt(param[2]));
+                    students.add(pers);
+                    line = reader.readLine();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        Integer idRemove = null;
+        int idFind = 0;
+        for (Student student : students) {
+            if (student.getId() == id) {
+                successfulDeletion = true;
+                idRemove = idFind;
+            }
+            idFind++;
+        }
+        if (idRemove != null) students.remove(students.get(idRemove));
+        try (FileWriter fw = new FileWriter(fileName, false)) {
+            for (Student pers : students) {
+                fw.write(pers.getName() + " " + pers.getAge() + " " + pers.getId());
+                fw.append('\n');
+            }
+            fw.flush();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return successfulDeletion;
+    }
 }

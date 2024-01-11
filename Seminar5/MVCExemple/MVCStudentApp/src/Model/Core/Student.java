@@ -21,6 +21,11 @@ public class Student extends Person implements Comparable<Student> {
         generalId++;
     }
 
+    public Student(String name, int age, int id) {
+        super(name, age);
+        this.id = id;
+    }
+
     /** Метод возвращает id студента*/
     public int getId() {
         return id;
