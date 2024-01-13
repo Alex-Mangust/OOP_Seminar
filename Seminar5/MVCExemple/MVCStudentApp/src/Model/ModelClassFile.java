@@ -23,7 +23,7 @@ public class ModelClassFile implements iGetModel {
         }
     }
 
-    // @Override
+    @Override
     public List<Student> getStudents() {
         List<Student> students = new ArrayList<Student>();
         try {
@@ -99,7 +99,8 @@ public class ModelClassFile implements iGetModel {
             }
             idFind++;
         }
-        if (idRemove != null) students.remove(students.get(idRemove));
+        if (idRemove != null)
+            students.remove(students.get(idRemove));
         try (FileWriter fw = new FileWriter(fileName, false)) {
             for (Student pers : students) {
                 fw.write(pers.getName() + " " + pers.getAge() + " " + pers.getId());
@@ -113,14 +114,21 @@ public class ModelClassFile implements iGetModel {
     }
 
     @Override
-    public void add(Student newStudent) {
-        List<Student> newStudents = new ArrayList<>();
-        newStudents.add(newStudent);
+    public void add(List<Student> newStudents) {
         addAllStudentToFile(newStudents);
     }
 
     @Override
-    public void add(List<Student> newStudents) {
-        addAllStudentToFile(newStudents);
+    public void add(Student newStudent) {
+        List<Student> newStudents = new ArrayList<>();
+        newStudents.add(newStudent);
+        this.add(newStudents);
+    }
+
+    @Override
+    public void add(Student... newStudents) {
+        for (Student student : newStudents) {
+            this.add(student);
+        }
     }
 }

@@ -10,6 +10,7 @@ import Model.ModelClassList;
 import Model.Core.Student;
 import View.ViewClass;
 import View.ViewClassEng;
+import View.ViewClassJa;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -79,9 +80,9 @@ public class App {
 
         iGetView viewSimple = new ViewClass();
         iGetView viewSimpleEng = new ViewClassEng();
+        iGetView viewSimpleJa = new ViewClassJa();
 
-
-        ControllerClass controller = new ControllerClass(allModels, viewSimple, viewSimpleEng);
+        ControllerClass controller = new ControllerClass(allModels, viewSimple, viewSimpleEng, viewSimpleJa);
         controller.run();
 
     }

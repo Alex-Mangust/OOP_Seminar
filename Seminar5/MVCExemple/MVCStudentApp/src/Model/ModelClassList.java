@@ -33,14 +33,22 @@ public class ModelClassList implements iGetModel {
     }
 
     @Override
-    public void add(Student newStudent) {
-        students.add(newStudent);
-    }
-
-    @Override
     public void add(List<Student> newStudents) {
         for (Student student : newStudents) {
             students.add(student);
         }
     }
+
+    @Override
+    public void add(Student newStudent) {
+        students.add(newStudent);
+    }
+
+    @Override
+    public void add(Student... newStudents) {
+        for (Student student : newStudents) {
+            this.add(student);
+        }
+    }
+
 }

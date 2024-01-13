@@ -10,11 +10,6 @@ import Model.Core.Student;
 
 public class ModelClassHash implements iGetModel {
     private HashMap<Integer, Student> students;
-    private static int number;
-
-    static {
-        number = 0;
-    }
 
     public ModelClassHash(List<Student> students) {
         this.students = new HashMap<>();
@@ -46,15 +41,23 @@ public class ModelClassHash implements iGetModel {
     }
 
     @Override
-    public void add(Student newStudent) {
-        students.put(newStudent.getId(), newStudent);
-    }
-
-    @Override
     public void add(List<Student> newStudents) {
         for (Student student : newStudents) {
             students.put(student.getId(), student);
         }
     }
+
+    @Override
+    public void add(Student newStudent) {
+        students.put(newStudent.getId(), newStudent);
+    }
+
+    @Override
+    public void add(Student... newStudents) {
+        for (Student student : newStudents) {
+            this.add(student);
+        }
+    }
+
 
 }

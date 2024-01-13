@@ -6,17 +6,17 @@ import java.util.Scanner;
 import Controller.Interfaces.iGetView;
 import Model.Core.Student;
 
-public class ViewClassEng implements iGetView {
+public class ViewClassJa implements iGetView {
     boolean exit = false;
     private static String language;
 
     static {
-        language = "English";
+        language = "Japanese";
     }
 
     @Override
     public void printAllStudents(List<Student> students) {
-        System.out.println("------------Students list------------");
+        System.out.println("----------------学生名簿----------------");
         for (Student student : students) {
             System.out.println(student);
         }
@@ -40,7 +40,7 @@ public class ViewClassEng implements iGetView {
     @Override
     public int deleteStudent() {
         Scanner in = new Scanner(System.in);
-        System.out.print("Enter the id of the student you want to delete: ");
+        System.out.print("削除したい生徒のIDを入力してください: ");
         if (exit)
             in.close();
         return in.nextInt();
@@ -66,50 +66,49 @@ public class ViewClassEng implements iGetView {
 
     @Override
     public String inputMessage() {
-        return "Enter the command:";
+        return "コマンドを入力してください:";
     }
 
     @Override
     public void exitMessage() {
-        System.out.println("Exit the program");
+        System.out.println("プログラムを終了する");
     }
 
     @Override
     public void removeMessage(boolean findStudent) {
         if (findStudent) { // Если студент найден, выводится сообщение о успешном удалении
-            System.out.println("Removal complete!");
+            System.out.println("削除完了!");
         } else { // Если студента нет в системе, выводится сообщение о том, что студент не найден
-            System.out.println("Student not found!");
+            System.out.println("学生が見つかりません!");
         }
     }
 
     @Override
     public void onlyLanguageMessage() {
-        System.out.println("The program only supports one language!");
+        System.out.println("プログラムは 1 つの言語のみをサポートします!");
     }
 
     @Override
     public void nonimplementedMessage() {
-        System.out.println("The functionality for this command has not yet been implemented!");
+        System.out.println("このコマンドの機能はまだ実装されていません!");
     }
 
     @Override
     public void defaultLanguageMessage() {
-        System.out.println("Default language selected - english");
+        System.out.println("デフォルトの言語が選択されました - 日本語");
     }
 
     @Override
     public void listStudentisEmptyMessage() {
-        System.out.println("The list of students is empty!");
+        System.out.println("学生リストが空です!");
     }
 
     @Override
     public String choiceLanguageMessage(boolean firstRun) {
         if (firstRun) {
-            System.out.print("Select a language:");
+            System.out.print("言語を選択:");
             return "\n";
         }
         return language;
     }
-
 }
