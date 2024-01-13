@@ -8,6 +8,11 @@ import Model.Core.Student;
 
 public class ViewClass implements iGetView {
     boolean exit = false;
+    private static String language;
+
+    static {
+        language = "ru";
+    }
 
     @Override
     public void printAllStudents(List<Student> students) {
@@ -37,5 +42,10 @@ public class ViewClass implements iGetView {
         System.out.print("Введите id студента, которого хотите удалить: ");
         if (exit) in.close();
         return in.nextInt();
+    }
+
+    @Override
+    public String languageView() {
+        return language;
     }
 }

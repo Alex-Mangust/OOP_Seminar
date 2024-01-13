@@ -58,6 +58,18 @@ public class ModelClassFile implements iGetModel {
         }
     }
 
+    private void addAllStudentToFile(List<Student> students) {
+        try (FileWriter fw = new FileWriter(fileName, true)) {
+            for (Student pers : students) {
+                fw.write(pers.getName() + " " + pers.getAge() + " " + pers.getId());
+                fw.append('\n');
+            }
+            fw.flush();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     @Override
     public boolean deleteStudent(int id) {
         boolean successfulDeletion = false;
@@ -98,5 +110,17 @@ public class ModelClassFile implements iGetModel {
             System.out.println(e.getMessage());
         }
         return successfulDeletion;
+    }
+
+    @Override
+    public void add(Student newStudent) {
+        List<Student> newStudents = new ArrayList<>();
+        newStudents.add(newStudent);
+        addAllStudentToFile(newStudents);
+    }
+
+    @Override
+    public void add(List<Student> newStudents) {
+        addAllStudentToFile(newStudents);
     }
 }

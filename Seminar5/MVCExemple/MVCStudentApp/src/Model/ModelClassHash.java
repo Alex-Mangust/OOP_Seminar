@@ -19,7 +19,7 @@ public class ModelClassHash implements iGetModel {
     public ModelClassHash(List<Student> students) {
         this.students = new HashMap<>();
         for (Student student : students) {
-            this.students.put(++number, student);
+            this.students.put(student.getId(), student);
         }
     }
 
@@ -43,6 +43,18 @@ public class ModelClassHash implements iGetModel {
         }
         if (keyRemove != null) students.remove(keyRemove);
         return successfulDeletion;
+    }
+
+    @Override
+    public void add(Student newStudent) {
+        students.put(newStudent.getId(), newStudent);
+    }
+
+    @Override
+    public void add(List<Student> newStudents) {
+        for (Student student : newStudents) {
+            students.put(student.getId(), student);
+        }
     }
 
 }

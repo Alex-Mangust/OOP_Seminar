@@ -38,6 +38,8 @@ public class App {
 
         // Создаю коллекцию List с экземплярами класса Student
         List<Student> students1 = new ArrayList<>();
+        List<Student> students2 = new ArrayList<>();
+        List<Student> students3 = new ArrayList<>();
 
         // Добавляю экземпляры класса Student в коллекцию List
         students1.add(student3);
@@ -47,31 +49,39 @@ public class App {
         students1.add(student9);
         students1.add(student5);
         students1.add(student1);
-        students1.add(student7);
-        students1.add(student16);
-        students1.add(student19);
-        students1.add(student17);
-        students1.add(student20);
-        students1.add(student8);
-        students1.add(student13);
-        students1.add(student14);
-        students1.add(student18);
-        students1.add(student15);
-        students1.add(student12);
-        students1.add(student6);
-        students1.add(student10);
-        students1.add(student22);
-        students1.add(student21);
+
+        students2.add(student7);
+        students2.add(student16);
+        students2.add(student19);
+        students2.add(student17);
+        students2.add(student20);
+        students2.add(student8);
+        students2.add(student13);
+
+        students3.add(student14);
+        students3.add(student18);
+        students3.add(student15);
+        students3.add(student12);
+        students3.add(student6);
+        students3.add(student10);
+        students3.add(student22);
+        students3.add(student21);
 
         iGetModel modelList = new ModelClassList(students1);
-        iGetModel modelFile = new ModelClassFile("Seminar5\\MVCExemple\\MVCStudentApp\\file\\StudentDB.csv");
-        // modelFile.saveAllStudentToFile(students1);
-        iGetModel modelHash = new ModelClassHash(students1);
+        ModelClassFile modelFile = new ModelClassFile("Seminar5\\MVCExemple\\MVCStudentApp\\file\\StudentDB.csv");
+        modelFile.saveAllStudentToFile(students3);
+        iGetModel modelHash = new ModelClassHash(students2);
+
+        List<iGetModel> allModels = new ArrayList<>();
+        allModels.add(modelList);
+        allModels.add(modelHash);
+        allModels.add(modelFile);
 
         iGetView viewSimple = new ViewClass();
+        iGetView viewSimpleEng = new ViewClassEng();
 
 
-        ControllerClass controller = new ControllerClass(modelFile, viewSimple);
+        ControllerClass controller = new ControllerClass(allModels, viewSimple, viewSimpleEng);
         controller.run();
 
     }

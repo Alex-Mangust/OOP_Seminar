@@ -8,6 +8,11 @@ import Model.Core.Student;
 
 public class ViewClassEng implements iGetView {
     boolean exit = false;
+    private static String language;
+
+    static {
+        language = "en";
+    }
 
     @Override
     public void printAllStudents(List<Student> students) {
@@ -37,6 +42,11 @@ public class ViewClassEng implements iGetView {
         System.out.print("Enter the id of the student you want to delete: ");
         if (exit) in.close();
         return in.nextInt();
+    }
+
+    @Override
+    public String languageView() {
+        return language;
     }
 }
 

@@ -31,4 +31,16 @@ public class ModelClassList implements iGetModel {
         if (idRemove != null) students.remove(students.get(idRemove));
         return successfulDeletion;
     }
+
+    @Override
+    public void add(Student newStudent) {
+        students.add(newStudent);
+    }
+
+    @Override
+    public void add(List<Student> newStudents) {
+        for (Student student : newStudents) {
+            students.add(student);
+        }
+    }
 }
