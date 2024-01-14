@@ -7,7 +7,7 @@ import Controller.Interfaces.iGetModel;
 import Controller.Interfaces.iGetView;
 import Model.Core.Student;
 
-// Класс, описывающий взаимодействие модели с пользовательским интерфейсом
+/** Класс, описывающий взаимодействие модели с пользовательским интерфейсом */
 public class ControllerClass {
     private iGetModel model; // Модель, с которой работает контроллер в данный момент
     private iGetView view; // Пользовательский интерфейс, с которым работает контроллер в данный момент
@@ -124,8 +124,7 @@ public class ControllerClass {
      */
     private void update() {
 
-        if (modelList.size() > 1) { // Если моделей в программе больше, чем одна, добавляет в studentBuffer
-                                    // студентов из каждой модели
+        if (modelList.size() > 1) { // Если моделей в программе больше, чем одна, добавляет в studentBuffer студентов из каждой модели
             studentBuffer = new ArrayList<>();
             for (iGetModel model : modelList) {
                 studentBuffer.addAll(model.getStudents());
@@ -142,19 +141,16 @@ public class ControllerClass {
     /** Метод, описывающий запуск и работу программы */
     public void run() {
         if (viewList.size() > 1) {
-            useLanguagee();
+            useLanguage();
         } else
             this.view = viewList.getFirst();
         Command com = (Command) Command.NONE; // Инициализируется экземпляр класса перечисления со значением NONE
-        boolean getNewIter = true; // Переменная, необходимая для продолжения работы программы, пока пользователь
-                                   // не введет команду о завершении
+        boolean getNewIter = true; // Переменная, необходимая для продолжения работы программы, пока пользователь не введет команду о завершении
         while (getNewIter) {
-            String command = new String(); // Происходит запрос пользователю, чтобы он ввел команду. Язык зависит от
-                                           // текущего интерфейса
+            String command = new String(); // Происходит запрос пользователю, чтобы он ввел команду. Язык зависит от текущего интерфейса
             command = view.prompt(view.inputMessage());
             try {
-                com = Command.valueOf(command.toUpperCase()); // Экземпляру класса записывается значение, которое ввел
-                                                              // пользователь
+                com = Command.valueOf(command.toUpperCase()); // Экземпляру класса записывается значение, которое ввел пользователь
                 switch (com) {
                     case EXIT: // Завершение программы
                         getNewIter = false;
@@ -165,13 +161,10 @@ public class ControllerClass {
                         update();
                         break;
                     case DELETE: // Удаление студента
-                        int studentId = view.deleteStudent(); // Происходит запрос пользователю, какого студента он
-                                                              // хочет удалить
-                        boolean findStudent = false; // Переменная, необходимая для проверки имеется ли запрашиваемый
-                                                     // студент в системе
+                        int studentId = view.deleteStudent(); // Происходит запрос пользователю, какого студента он хочет удалить
+                        boolean findStudent = false; // Переменная, необходимая для проверки имеется ли запрашиваемый студент в системе
                         for (iGetModel model : modelList) {
-                            findStudent = model.deleteStudent(studentId); // Проверяется каждая модель на наличие
-                                                                          // запрашиваемого студента
+                            findStudent = model.deleteStudent(studentId); // Проверяется каждая модель на наличие запрашиваемого студента
                             if (findStudent)
                                 break; // Если студент найден, цикл завершается досрочно
                         }
@@ -179,15 +172,13 @@ public class ControllerClass {
 
                         break;
                     case LANGUAGE: // Смена языка пользовательского интерфейса
-                        if (viewList.size() > 1) { // Если программа использует больше одного пользовательского
-                                                   // интерфейса, вызывается метод смены текущего интерфейса
-                            useLanguagee();
+                        if (viewList.size() > 1) { // Если программа использует больше одного пользовательского интерфейса, вызывается метод смены текущего интерфейса
+                            useLanguage();
                         } else { // Иначе выводится сообщение о том, что программа поддерживает только один язык
                             view.onlyLanguageMessage();
                         }
                         break;
-                    default: // При вводе команды из класса перечисления Command, функционал которой
-                             // нереализован, выводится сообщение пользователю, сообщающее об этом
+                    default: // При вводе команды из класса перечисления Command, функционал которой нереализован, выводится сообщение пользователю, сообщающее об этом
                         view.nonimplementedMessage();
                 }
             } catch (Exception e) {
@@ -200,7 +191,7 @@ public class ControllerClass {
      * Метод, запрашивающий у пользователя предпочитаемый им язык пользовательского
      * интерфейса
      */
-    private void useLanguagee() {
+    private void useLanguage() {
         boolean firstRunChoice = true;
         String languageMessange = new String();
         int numberLanguage = 1;

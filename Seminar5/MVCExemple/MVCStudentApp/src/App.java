@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import Controller.ControllerClass;
@@ -14,6 +15,7 @@ import View.ViewClassJa;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        // Создаю экземпляры класса Student
         Student student1 = new Student("Иван", 21);
         Student student2 = new Student("Анна", 23);
         Student student3 = new Student("Константин", 20);
@@ -37,10 +39,12 @@ public class App {
         Student student21 = new Student("Руслан", 20);
         Student student22 = new Student("Олеся", 22);
 
-        // Создаю коллекцию List с экземплярами класса Student
+        // Создаю коллекции List с экземплярами класса Student
         List<Student> students1 = new ArrayList<>();
         List<Student> students2 = new ArrayList<>();
-        List<Student> students3 = new ArrayList<>();
+        
+        // Создаю коллекцию HashMap с экземплярами класса Student и с ключами типа Integer
+        HashMap<Integer, Student> students3 = new HashMap<>();
 
         // Добавляю экземпляры класса Student в коллекцию List
         students1.add(student3);
@@ -51,38 +55,56 @@ public class App {
         students1.add(student5);
         students1.add(student1);
 
-        students2.add(student7);
-        students2.add(student16);
-        students2.add(student19);
-        students2.add(student17);
-        students2.add(student20);
-        students2.add(student8);
-        students2.add(student13);
+        // Добавляю экземпляры класса Student в коллекцию List
+        students2.add(student14);
+        students2.add(student18);
+        students2.add(student15);
+        students2.add(student12);
+        students2.add(student6);
+        students2.add(student10);
+        students2.add(student22);
+        students2.add(student21);
 
-        students3.add(student14);
-        students3.add(student18);
-        students3.add(student15);
-        students3.add(student12);
-        students3.add(student6);
-        students3.add(student10);
-        students3.add(student22);
-        students3.add(student21);
-
+        // Добавляю экземпляры класса Student и ключи, которыми являются id экземпляров класса, в коллекцию HashMap 
+        students3.put(student7.getId(), student7);
+        students3.put(student16.getId(), student16);
+        students3.put(student19.getId(), student19);
+        students3.put(student17.getId(), student17);
+        students3.put(student20.getId(), student20);
+        students3.put(student8.getId(), student8);
+        students3.put(student13.getId(), student13);
+        
+        // Инициализирую модели
         iGetModel modelList = new ModelClassList(students1);
-        ModelClassFile modelFile = new ModelClassFile("Seminar5\\MVCExemple\\MVCStudentApp\\file\\StudentDB.csv");
-        modelFile.saveAllStudentToFile(students3);
-        iGetModel modelHash = new ModelClassHash(students2);
+        iGetModel modelFile = new ModelClassFile("file\\StudentDB.csv");
+        ((ModelClassFile)modelFile).saveAllStudentToFile(students2); // Метод, необходимый для перезаписи файла со студентами, с которым работает модель modelFile
+        iGetModel modelHash = new ModelClassHash(students3);
 
+        // Создаю коллекцию List с моделями
         List<iGetModel> allModels = new ArrayList<>();
+        
+        // Добавляю модели в коллекцию List
         allModels.add(modelList);
         allModels.add(modelHash);
         allModels.add(modelFile);
 
+        // Инициализирую пользовательские интерфейсы
         iGetView viewSimple = new ViewClass();
         iGetView viewSimpleEng = new ViewClassEng();
         iGetView viewSimpleJa = new ViewClassJa();
 
-        ControllerClass controller = new ControllerClass(allModels, viewSimple, viewSimpleEng, viewSimpleJa);
+        // Создаю коллекцию List с пользовательскими интерфейсами
+        List<iGetView> allViews = new ArrayList<>();
+
+        // Добавляю пользовательские интерфейсы в коллекцию List
+        allViews.add(viewSimple);
+        allViews.add(viewSimpleEng);
+        allViews.add(viewSimpleJa);
+
+        // Создаю экземпляр класса ControllerClass
+        ControllerClass controller = new ControllerClass(allModels, allViews);
+
+        // Вызываю функцию run для запуска программы
         controller.run();
 
     }

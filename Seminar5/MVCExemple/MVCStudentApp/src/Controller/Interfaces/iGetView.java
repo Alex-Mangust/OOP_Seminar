@@ -20,5 +20,5 @@ public interface iGetView {
     void nonimplementedMessage(); // Объявленный метод, необходимый для вызова сообщения о попытки задействия нериализованного функционала
     void defaultLanguageMessage(); // Объявленный метод, необходимый для вывода сообщения о выбранном по умолчанию языке, если пользователь не сделал свой выбор
     void listStudentisEmptyMessage(); // Объявленный метод, необходимый для вывода сообщения в случае, если список студентов пуст
-    String choiceLanguageMessage(boolean firstRun);
+    String choiceLanguageMessage(boolean firstRun); // Объявленный метод, необходимый для выбора пользовательского интерфейса
 }
