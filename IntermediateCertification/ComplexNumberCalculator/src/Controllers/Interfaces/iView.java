@@ -2,12 +2,13 @@ package Controllers.Interfaces;
 
 import Models.ComplexNumber;
 
+/** Интерфейс, объявляющий поведение элементов пользовательского интерфейса */
 public interface iView {
-    String promptSign(String msg);
-    ComplexNumber prompt();
-    String inputSignMessage();
-    String result();
-    String inputError();
-    boolean nextRun();
-    void titleProgram();
+    ComplexNumber prompt(ComplexNumber currentNumber); // Объявленный метод, необходимый для ввода вещественных чисел
+    String promptSign(String msg); // Объявленный метод, необходимый для ввода знака операции
+    String inputSignMessage(); // Объявленный метод, необходимый для запроса у пользователя каких-либо действий
+    String result(); // Объявленный метод, необходимый для вывода в консоль результата операции
+    String inputError(); // Объявленный метод, необходимый для вывода в консоль ошибки ввода
+    boolean nextRun(); // Объявленный метод, необходимый для проверки, желает ли пользователь продолжать работу
+    void titleProgram(); // Объявленный метод, необходимый для вывода в консоль заголовка с названием программы при запуске
 }

@@ -1,20 +1,28 @@
 package Models.Calculator;
 
-import Controllers.Logger;
 import Controllers.Interfaces.iCalculator;
+import Controllers.Interfaces.iLogger;
+import Controllers.Interfaces.iLoggerFile;
 import Models.ComplexNumber;
 
+/** Класс, описывающий поведение декоратора, который расширяет функциональность калькулятора */
 public class Decorator implements iCalculator {
-    private CalculatorComplexNumber calculator;
-    private Logger logger;
+    private CalculatorComplexNumber calculator; // Экземпляр класса калькулятора
+    private iLogger logger; // Экземпляр класса логгера
 
 
-    public Decorator(CalculatorComplexNumber calculator, Logger logger) {
+    /**
+     * Конструктор класса
+     * @param calculator - калькулятор
+     * @param logger - логгер
+     */
+    public Decorator(CalculatorComplexNumber calculator, iLogger logger) {
         this.calculator = calculator;
         this.logger = logger;
+        if (logger instanceof iLoggerFile) ((iLoggerFile)logger).rewrite(); // Если логгер имплементирует интерфейс iLoggerFile, то вызывается функция, перезаписывающая файл, в который будет записываться сообщения логгера
     }
 
-
+    /** Переопределенный метод для сложения комплексных чисел */
     @Override
     public iCalculator sum(ComplexNumber arg) {
         ComplexNumber firstArg = calculator.result();
@@ -24,6 +32,7 @@ public class Decorator implements iCalculator {
         return result;
     }
 
+    /** Переопределенный метод для вычитания комплексных чисел */
     @Override
     public iCalculator diff(ComplexNumber arg) {
         ComplexNumber firstArg = calculator.result();
@@ -33,6 +42,7 @@ public class Decorator implements iCalculator {
         return result;
     }
 
+    /** Переопределенный метод для умножения комплексных чисел */
     @Override
     public iCalculator multi(ComplexNumber arg) {
         ComplexNumber firstArg = calculator.result();
@@ -42,6 +52,7 @@ public class Decorator implements iCalculator {
         return result;
     }
 
+    /** Переопределенный метод для деления комплексных чисел */
     @Override
     public iCalculator div(ComplexNumber arg) {
         ComplexNumber firstArg = calculator.result();
@@ -51,6 +62,7 @@ public class Decorator implements iCalculator {
         return result;
     }
 
+    /** Переопределенный метод для получения результата операций */
     @Override
     public ComplexNumber result() {
         ComplexNumber result = calculator.result();
