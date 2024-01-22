@@ -10,6 +10,7 @@ import Model.ModelClassHash;
 import Model.ModelClassList;
 import Model.Core.Student;
 import View.ViewClass;
+import View.ViewClassDe;
 import View.ViewClassEng;
 import View.ViewClassJa;
 
@@ -92,6 +93,7 @@ public class App {
         iGetView viewSimple = new ViewClass();
         iGetView viewSimpleEng = new ViewClassEng();
         iGetView viewSimpleJa = new ViewClassJa();
+        iGetView viewSimpleDe = new ViewClassDe();
 
         // Создаю коллекцию List с пользовательскими интерфейсами
         List<iGetView> allViews = new ArrayList<>();
@@ -100,6 +102,7 @@ public class App {
         allViews.add(viewSimple);
         allViews.add(viewSimpleEng);
         allViews.add(viewSimpleJa);
+        allViews.add(viewSimpleDe);
 
         // Создаю экземпляр класса ControllerClass
         ControllerClass controller = new ControllerClass(allModels, allViews);
