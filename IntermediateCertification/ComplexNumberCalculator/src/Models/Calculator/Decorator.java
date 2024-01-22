@@ -7,7 +7,7 @@ import Models.ComplexNumber;
 
 /** Класс, описывающий поведение декоратора, который расширяет функциональность калькулятора */
 public class Decorator implements iCalculator {
-    private CalculatorComplexNumber calculator; // Экземпляр класса калькулятора
+    private iCalculator calculator; // Экземпляр класса калькулятора
     private iLogger logger; // Экземпляр класса логгера
 
 
@@ -16,7 +16,7 @@ public class Decorator implements iCalculator {
      * @param calculator - калькулятор
      * @param logger - логгер
      */
-    public Decorator(CalculatorComplexNumber calculator, iLogger logger) {
+    public Decorator(iCalculator calculator, iLogger logger) {
         this.calculator = calculator;
         this.logger = logger;
         if (logger instanceof iLoggerFile) ((iLoggerFile)logger).rewrite(); // Если логгер имплементирует интерфейс iLoggerFile, то вызывается функция, перезаписывающая файл, в который будет записываться сообщения логгера
@@ -68,6 +68,13 @@ public class Decorator implements iCalculator {
         ComplexNumber result = calculator.result();
         logger.log(String.format("Получение результата %s", result));
         return result;
+    }
+
+    /** Переопределенный метод, для вывода в консоль и логирования сообщения об ошибке, если пользователь, при делении, ввел в качестве делителя нули */
+    @Override
+    public void inputZero(String error) {
+        logger.log(error);
+        System.out.println(error);
     }
     
 }

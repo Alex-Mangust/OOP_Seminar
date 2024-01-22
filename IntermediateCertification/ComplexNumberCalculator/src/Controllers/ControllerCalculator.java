@@ -45,7 +45,8 @@ public class ControllerCalculator {
                         break;
                     case "/":
                         arg = view.prompt(calculator.result()); // Происходит запрос у пользователя второго комплексного числа
-                        calculator.div(arg); // Происходит деление комплексных чисел
+                        if (arg.getFirstRealNumber() == 0 || arg.getSecondRealNumber() == 0) calculator.inputZero(view.inputZeroError()); // Если пользователь ввел нули в качестве делителя, выводится сообщение об ошибке.
+                        else calculator.div(arg); // Происходит деление комплексных чисел
                         break;
                     case "=":
                         System.out.printf(view.result(), calculator.result()); // В консоль выводится сообщение с результатом выполненной операции

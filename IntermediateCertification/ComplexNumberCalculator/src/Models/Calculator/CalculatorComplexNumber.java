@@ -51,4 +51,10 @@ public class CalculatorComplexNumber implements iCalculator {
     public ComplexNumber result() {
         return primaryArg;
     }
+
+    /** Переопределенный метод, для вывода в консоль сообщения об ошибке, если пользователь, при делении, ввел в качестве делителя нули */
+    @Override
+    public void inputZero(String error) {
+        System.out.println(error);
+    }
 }

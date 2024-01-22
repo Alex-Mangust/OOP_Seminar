@@ -67,6 +67,7 @@ public class ViewCalculator implements iView {
         System.out.println("Калькулятор комплексных чисел!");
     }
     
+    /** Метод, необходимый, возможно ли ввод пользователя, когда он вводит вещественные числа, конвертировать в тип Integer */
     public boolean convertToNumber(String numberConvert) {
         try {
             Integer.parseInt(numberConvert);
@@ -74,5 +75,11 @@ public class ViewCalculator implements iView {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    /** Переопределенный метод, необходимый для вывода в консоль ошибки, если при делении пользователь введет нули  */
+    @Override
+    public String inputZeroError() {
+        return "Ошибка! Программа не может делить на 0!";
     }
 }
